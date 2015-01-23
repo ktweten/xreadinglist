@@ -7,6 +7,8 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
     self.issue = null;
     self.showDetails = false;
     self.lastId = null;
+    self.rawData = null;
+    self.urls = [];
 
     self.getDetails = function(issueId) {
         self.showDetails = issueId !== self.lastId;
@@ -32,12 +34,13 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
 
                 self.link = "";
                 $http.get(link).success(function(data, status, headers, config) {
+                    self.rawData = data;
                     parsedData = JSON.parse(data);
                     if (parsedData.results) {
                         result = parsedData.results[0];
 
                         if (result) {
-                            urls = result.urls;
+                            self.urls = urls = result.urls;
 
                             if (urls) {
                                 for (i = 0; i < urls.length; i += 1) {
