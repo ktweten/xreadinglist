@@ -1,0 +1,157 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: lightblue;
+}
+
+header {
+    background-color: #337ab7;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    color: #f5f5f5;
+}
+
+.listTable {
+    background-color: lightgray;
+    display: block;
+    max-height: 350px;
+}
+
+.selectingDiv {
+    width: 100%;
+    background-color: slategray;
+}
+
+.queryDiv {
+    background-color: slategray;
+    padding-top: 5px;
+    min-width: 100%;
+}
+
+.responseDiv {
+    background-color: slategray;
+    min-width: 100%;
+}
+
+.fullButton {
+    min-width: 100%;
+    min-height: 100%;
+    vertical-align: top;
+}
+
+.nameEntry {
+    width: 50%;
+}
+
+.darkText {
+    color: #222222;
+}
+
+.selectionSummary {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+.lightText {
+    color: #f5f5f5;
+}
+
+.selectionHeading {
+    border-bottom: 5px;
+}
+
+.listDiv {
+    padding-bottom: 25px;
+}
+
+table {
+    font-size: 125%;
+    table-layout: fixed;
+    overflow: auto;
+    width: inherit;
+}
+
+th, td {
+    text-align: left;
+}
+
+.selectingDiv {
+    font-size: 125%;
+    width: inherit;
+}
+
+.searchRow, .nameEntry, .heading {
+    padding-left: 10px;
+}
+
+.tallButton {
+    font-size: 175%;
+}
+
+.searchRow {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    height: 50px;
+    background-color: #23527c;
+    color: #f5f5f5;
+}
+
+.comicDiv {
+    background-color: lightgray;
+    padding-bottom: 25px;
+}
+
+.lightRow {
+    background-color: #A0A0A0;
+}
+
+.darkRow {
+    background-color: #606060;
+}
+
+.seriesDiv {
+    border: 1px solid black;
+}
+
+.seriesHeading {
+    background-color: #A0A0A0;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.foundHeading {
+    background-color: slategray;
+    padding: 10px;
+}
+
+.heading {
+    font-weight: bold;
+    color: #f5f5f5;
+}
+
+.issueDiv {
+    border: 2px solid black;
+}
+
+.infoDiv {
+    padding: 10px;
+    background-color: #222222;
+    color: #f5f5f5;
+}
+
+.creditsDiv {
+    padding: 10px;
+    background-color: #5e5e5e;
+    color: #f5f5f5;
+}
+
+.synopsisDiv {
+    background-color: #f5f5f5;
+    color: #0f0f0f;
+    padding: 25px;
+}
