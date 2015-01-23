@@ -30,8 +30,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                     self.link = "Success";
                 }).
                 error(function(data, status, headers, config) {
-                    alert("ERROR " + data.toString());
-                        self.link = data;
+                    self.link = data;
                 });
             }
         });
