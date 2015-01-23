@@ -16,6 +16,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
              id: issueId
         }).success(function(data, status, headers, config) {
             var link = "http://gateway.marvel.com:80/v1/public/comics?title=",
+                parsedData,
                 result,
                 urls,
                 reader,
@@ -31,8 +32,9 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
 
                 self.link = "";
                 $http.get(link).success(function(data, status, headers, config) {
-                    if (data.results) {
-                        result = data.results[0];
+                    parsedData = JSON.parse(data);
+                    if (parsedData.results) {
+                        result = parsedData.results[0];
 
                         if (result) {
                             urls = result.urls;
