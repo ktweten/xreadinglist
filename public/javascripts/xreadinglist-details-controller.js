@@ -25,7 +25,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                 link = link.concat(self.issue.number);
                 link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
 
-                self.link = "Get";
+                self.link = "";
                 $http.get(link).success(function(data, status, headers, config) {
                     self.link = "Success";
                 }).
