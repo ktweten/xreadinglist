@@ -27,7 +27,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
 
                 self.link = "";
                 $http.get(link).success(function(data, status, headers, config) {
-                    self.link = "Success";
+                    self.link = data;
                 }).
                 error(function(data, status, headers, config) {
                     self.link = data;
