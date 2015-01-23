@@ -15,7 +15,11 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
         $http.post('/details', {
              id: issueId
         }).success(function(data, status, headers, config) {
-            var link = "http://gateway.marvel.com:80/v1/public/comics?title=";
+            var link = "http://gateway.marvel.com:80/v1/public/comics?title=",
+                result,
+                urls,
+                reader,
+                i;
 
             if (data.length > 0){
                 self.issue = data[0];
@@ -27,7 +31,27 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
 
                 self.link = "";
                 $http.get(link).success(function(data, status, headers, config) {
-                    self.link = data;
+                    if (data.results) {
+                        result = data.results[0];
+
+                        if (result) {
+                            urls = result.urls;
+
+                            if (urls) {
+                                for (i = 0; i < urls.length; i += 1) {
+                                    if (urls[i].type == "reader") {
+                                        self.link = urls[i].url;
+                                    }
+                                }
+                            } else {
+                                self.link = "No urls";
+                            }
+                        } else {
+                           self.link = "No result"
+                        }
+                    } else {
+                        self.link = "No results";
+                    }
                 }).
                 error(function(data, status, headers, config) {
                     self.link = data;
