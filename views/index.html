@@ -131,6 +131,8 @@
                             <a href="{{detailsCtrl.link}}">{{detailsCtrl.link}}</a>
                             <p>{{detailsCtrl.rawData}}</p>
                             <h3 ng-repeat="url in detailsCtrl.urls">Type: {{url.type}} Path: {{url.url}}</h3>
+                            <h3>Details: {{detailsCtrl.parsed.length}}</h3>
+                            <h3 ng-repeat="data in detailsCtrl.parsed">Type: {{data}}</h3>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
     self.showDetails = false;
     self.lastId = null;
     self.rawData = null;
+    self.parsed = [];
     self.urls = [];
 
     self.getDetails = function(issueId) {
@@ -19,10 +20,8 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
         }).success(function(data, status, headers, config) {
             var link = "http://gateway.marvel.com:80/v1/public/comics?title=",
                 parsedData,
-                result,
-                urls,
-                reader,
-                i;
+                value,
+                key;
 
             if (data.length > 0){
                 self.issue = data[0];
@@ -36,26 +35,8 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                 $http.get(link).success(function(data, status, headers, config) {
                     self.rawData = data;
                     parsedData = JSON.parse(data);
-                    if (parsedData.results) {
-                        result = parsedData.results[0];
-
-                        if (result) {
-                            self.urls = urls = result.urls;
-
-                            if (urls) {
-                                for (i = 0; i < urls.length; i += 1) {
-                                    if (urls[i].type == "reader") {
-                                        self.link = urls[i].url;
-                                    }
-                                }
-                            } else {
-                                self.link = "No urls";
-                            }
-                        } else {
-                           self.link = "No result"
-                        }
-                    } else {
-                        self.link = "No results";
+                    for (key in parsedData) {
+                        self.parsed.push(key + ": " + parsedData[key]);
                     }
                 }).
                 error(function(data, status, headers, config) {
