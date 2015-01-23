@@ -43,21 +43,21 @@ var SampleApp = function() {
     /**
      *  Populate the cache.
      */
-    self.populateCache = function() {
-        if (typeof self.zcache === "undefined") {
-            self.zcache = { 'index.html': '' };
-        }
-
-        //  Local cache for static content.
-        self.zcache['index.html'] = fs.readFileSync('./index.html');
-    };
+    //self.populateCache = function() {
+    //    if (typeof self.zcache === "undefined") {
+    //        self.zcache = { 'index.html': '' };
+    //    }
+    //
+    //    //  Local cache for static content.
+    //    self.zcache['index.html'] = fs.readFileSync('./index.html');
+    //};
 
 
     /**
      *  Retrieve entry (content) from cache.
      *  @param {string} key  Key identifying content to retrieve from cache.
      */
-    self.cache_get = function(key) { return self.zcache[key]; };
+    //self.cache_get = function(key) { return self.zcache[key]; };
 
 
     /**
@@ -78,17 +78,17 @@ var SampleApp = function() {
     /**
      *  Setup termination handlers (for exit and a list of signals).
      */
-    self.setupTerminationHandlers = function(){
-        //  Process on exit and signals.
-        process.on('exit', function() { self.terminator(); });
-
-        // Removed 'SIGPIPE' from the list - bugz 852598.
-        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-        ].forEach(function(element, index, array) {
-            process.on(element, function() { self.terminator(element); });
-        });
-    };
+    //self.setupTerminationHandlers = function(){
+    //    //  Process on exit and signals.
+    //    process.on('exit', function() { self.terminator(); });
+    //
+    //    // Removed 'SIGPIPE' from the list - bugz 852598.
+    //    ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+    //     'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+    //    ].forEach(function(element, index, array) {
+    //        process.on(element, function() { self.terminator(element); });
+    //    });
+    //};
 
 
     /*  ================================================================  */
@@ -98,19 +98,19 @@ var SampleApp = function() {
     /**
      *  Create the routing table entries + handlers for the application.
      */
-    self.createRoutes = function() {
-        self.routes = { };
-
-        self.routes['/asciimo'] = function(req, res) {
-            var link = "http://i.imgur.com/kmbjB.png";
-            res.send("<html><body><img src='" + link + "'></body></html>");
-        };
-
-        self.routes['/'] = function(req, res) {
-            res.setHeader('Content-Type', 'text/html');
-            res.send(self.cache_get('index.html') );
-        };
-    };
+    //self.createRoutes = function() {
+    //    self.routes = { };
+    //
+    //    self.routes['/asciimo'] = function(req, res) {
+    //        var link = "http://i.imgur.com/kmbjB.png";
+    //        res.send("<html><body><img src='" + link + "'></body></html>");
+    //    };
+    //
+    //    self.routes['/'] = function(req, res) {
+    //        res.setHeader('Content-Type', 'text/html');
+    //        res.send(self.cache_get('index.html') );
+    //    };
+    //};
 
 
     /**
@@ -118,7 +118,7 @@ var SampleApp = function() {
      *  the handlers.
      */
     self.initializeServer = function() {
-        self.createRoutes();
+        //self.createRoutes();
         self.app = express();
 
 
@@ -138,9 +138,10 @@ var SampleApp = function() {
         //for (var r in self.routes) {
         //    self.app.get(r, self.routes[r]);
         //}
-// catch 404 and forward to error handler
+
+        // catch 404 and forward to error handler
         self.app.use(function(req, res, next) {
-            var err = new Error('Not Found');
+            var err = new Error('Not Found. Again');
             err.status = 404;
             next(err);
         });
@@ -177,8 +178,8 @@ var SampleApp = function() {
      */
     self.initialize = function() {
         self.setupVariables();
-        self.populateCache();
-        self.setupTerminationHandlers();
+        //self.populateCache();
+        //self.setupTerminationHandlers();
 
         // Create the express server and routes.
         self.initializeServer();
