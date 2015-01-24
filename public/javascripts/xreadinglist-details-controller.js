@@ -30,7 +30,9 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
 
                 self.link = "";
                 $http.get(link).success(function(data, status, headers, config) {
-                    self.rawData = data;
+                    self.rawData = data.data;
+                    self.results = data.data.results;
+                    self.result = self.results[0];
                     self.urls = data.data.results[0].urls;
                     self.img = data.data.results[0].thumbnail;
                 }).
