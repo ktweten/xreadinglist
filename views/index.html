@@ -128,8 +128,7 @@
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
-                            <h3>Details: {{detailsCtrl.data}}</h3>
-                            <p ng-repeat="item in detailsCtrl.data">{{item}}</p>
+                            <p ng-repeat="key, item in detailsCtrl.data">{{key}}: {{item}}</p>
                         </div>
                     </div>
                 </div>
