@@ -134,7 +134,8 @@
                             <!--<p>Result: {{detailsCtrl.result}}</p>-->
                             <!--<p>Urls: {{detailsCtrl.urls}}</p>-->
                             <!--<p>Thumbnail: {{detailsCtrl.img.path + '.' + detailsCtrl.img.extension}}</p>-->
-                            <a src="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}" target="blank">"{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}</a>
+                            <img src="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}"
+                                alt="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}">
                             <span ng-repeat="url in detailsCtrl.urls">
                                 <a href="{{url.url}}" target="blank">{{url.type}}</a>
                             </span>
