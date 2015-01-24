@@ -129,14 +129,16 @@
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
                             <!--<p ng-repeat="item in detailsCtrl.data">{{item}}</p>-->
-                            <p>Data: {{detailsCtrl.rawData}}</p>
-                            <p>Results: {{detailsCtrl.results}}</p>
-                            <p>Result: {{detailsCtrl.result}}</p>
-                            <p>Urls: {{detailsCtrl.urls}}</p>
-                            <p>Thumbnail: {{detailsCtrl.img.path + '.' + detailsCtrl.img.extension}}</p>
-                            <img href="{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}">
-                            <a href="{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}" target="blank">"{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}</a>
-                            <a type="button" ng-repeat="url in detailsCtrl.urls" href="{{url.url}}" target="blank">{{url.type}}</a>
+                            <!--<p>Data: {{detailsCtrl.rawData}}</p>-->
+                            <!--<p>Results: {{detailsCtrl.results}}</p>-->
+                            <!--<p>Result: {{detailsCtrl.result}}</p>-->
+                            <!--<p>Urls: {{detailsCtrl.urls}}</p>-->
+                            <!--<p>Thumbnail: {{detailsCtrl.img.path + '.' + detailsCtrl.img.extension}}</p>-->
+                            <img href="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}" alt="No thumbnail available">
+                            <a href="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}" target="blank">"{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}</a>
+                            <span ng-repeat="url in detailsCtrl.urls">
+                                <a href="{{url.url}}" target="blank">{{url.type}}</a>
+                            </span>
                         </div>
                     </div>
                 </div>
