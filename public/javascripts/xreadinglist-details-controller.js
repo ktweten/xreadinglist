@@ -18,7 +18,8 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
              id: issueId
         }).success(function(data, status, headers, config) {
             var link = "http://gateway.marvel.com:80/v1/public/comics?title=",
-                key;
+                urls = [],
+                i;
 
             if (data.length > 0){
                 self.issue = data[0];
@@ -29,9 +30,16 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                 link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
 
                 self.link = "";
+                selr.image = {};
                 $http.get(link).success(function(data, status, headers, config) {
                     self.rawData = data;
-                    self.data = data.data.results[0];
+                    urls = data.data.results[0].urls;
+                    for (i = 0; i < urls.length; i += 1) {
+                        if (urls[i].type === "reader") {
+                            self.link = urls[i].url;
+                        }
+                    }
+                    self.img = data.data.results[0].thumbnail;
                 }).
                 error(function(data, status, headers, config) {
                     self.link = data;
