@@ -128,9 +128,8 @@
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
-                            <a ng-repeat="link in detailsCtrl.link" href="{{link.url}}">{{link.type}}</a>
-                            <p>{{detailsCtrl.rawData}}</p>
                             <h3>Details: {{detailsCtrl.data}}</h3>
+                            <p ng-repeat="item in detailsCtrl.data">{{item}}</p>
                         </div>
                     </div>
                 </div>
