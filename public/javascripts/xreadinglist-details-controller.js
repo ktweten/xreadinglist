@@ -32,7 +32,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                 $http.get(link).success(function(data, status, headers, config) {
                     self.rawData = data;
                     self.data = data.data.results;
-                    self.links = data.data.results[0].urls;
+                    self.links = data.data.results[0].textObjects[0].urls;
                 }).
                 error(function(data, status, headers, config) {
                     self.link = data;
