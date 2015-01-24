@@ -130,7 +130,8 @@
                                 detailsCtrl.issue.characters.join(", ")}}</p>
                             <!--<p ng-repeat="item in detailsCtrl.data">{{item}}</p>-->
                             <img href="{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}">
-                            <a ng-show="detailsCtrl.link" href="{{detailsCtrl.link}}" target="blank">Open in reader</a>
+                            <a href="{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}" target="blank">"{{detailsCtrl.img.path}}.{{detailsCtrl.issue.extension}}</a>
+                            <a type="button" ng-repeat="url in detailsCtrl.urls" href="{{url.url}}" target="blank">{{url.type}}</a>
                         </div>
                     </div>
                 </div>
