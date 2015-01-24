@@ -108,6 +108,8 @@
                         {{issue.number}}
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">
+                        <img src="{{detailsCtrl.img.path}}portrait_medium.{{detailsCtrl.img.extension}}"
+                             alt="{{detailsCtrl.img.path}}portrait_medium.{{detailsCtrl.img.extension}}">
                         <div class="infoDiv">
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
                             <p>{{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}</p>
@@ -128,14 +130,6 @@
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
-                            <!--<p ng-repeat="item in detailsCtrl.data">{{item}}</p>-->
-                            <!--<p>Data: {{detailsCtrl.rawData}}</p>-->
-                            <!--<p>Results: {{detailsCtrl.results}}</p>-->
-                            <!--<p>Result: {{detailsCtrl.result}}</p>-->
-                            <!--<p>Urls: {{detailsCtrl.urls}}</p>-->
-                            <!--<p>Thumbnail: {{detailsCtrl.img.path + '.' + detailsCtrl.img.extension}}</p>-->
-                            <img src="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}"
-                                alt="{{detailsCtrl.img.path}}.{{detailsCtrl.img.extension}}">
                             <span ng-repeat="url in detailsCtrl.urls">
                                 <a href="{{url.url}}" target="blank">{{url.type}}</a>
                             </span>
