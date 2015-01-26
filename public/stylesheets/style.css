@@ -78,10 +78,10 @@ th, td {
     text-align: left;
 }
 
-.fixedScroll {
-    position: fixed;
-    top: 0px;
-}
+/*.fixedScroll {*/
+    /*position: fixed;*/
+    /*top: 0px;*/
+/*}*/
 
 /*.fixedSearch {*/
     /*position: fixed;*/

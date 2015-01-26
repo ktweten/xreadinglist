@@ -31,8 +31,7 @@
             <h1 class="heading">Search for issues:</h1>
             <div ng-repeat="list in queryCtrl.lists">
                 <a type="button" class="btn btn-default btn-block tallButton" data-toggle="button"
-                    ng-click="list.selecting = !list.selecting"
-                    ng-class="list.selecting ? 'fixedScroll' : ''">
+                    ng-click="list.selecting = !list.selecting">
                     {{list.title}}
                 </a>
                 <div class="selectionSummary lightText" ng-hide="list.selecting || list.getDescription().length < 1"
