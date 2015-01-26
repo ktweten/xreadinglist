@@ -116,7 +116,8 @@
                         {{issue.number}}
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">
-                        <img src="{{detailsCtrl.issue.coverRoot}}/portrait_uncanny.{{detailsCtrl.issue.extension}}"
+                        <img class="issueCover"
+                             src="{{detailsCtrl.issue.coverRoot}}/portrait_uncanny.{{detailsCtrl.issue.extension}}"
                              alt="{{detailsCtrl.issue.coverRoot}}/portrait_uncanny.{{detailsCtrl.issue.extension}}">
                         <div class="infoDiv">
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
@@ -138,7 +139,8 @@
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
-                            <a ng-show="detailsCtrl.url" href="{{detailsCtrl.url.url}}" target="_blank">
+                            <a class="readerLink"
+                               ng-show="detailsCtrl.url" href="{{detailsCtrl.url.url}}" target="_blank">
                                 Read at Marvel.com</a>
                             <!--<span ng-repeat="url in detailsCtrl.urls">-->
                                 <!--<a href="{{url.url}}" target="blank">{{url.type}}</a>-->
