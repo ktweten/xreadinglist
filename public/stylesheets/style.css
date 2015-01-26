@@ -17,7 +17,7 @@ header {
 .listTable {
     background-color: lightgray;
     display: block;
-    max-height: 350px;
+    /*max-height: 350px;*/
 }
 
 .selectingDiv {
@@ -71,13 +71,29 @@ header {
 table {
     font-size: 125%;
     table-layout: fixed;
-    overflow: auto;
     width: inherit;
 }
 
 th, td {
     text-align: left;
 }
+
+.fixedScroll {
+    position: fixed;
+    top: 0px;
+}
+
+/*.fixedSearch {*/
+    /*position: fixed;*/
+    /*top: 49px;*/
+    /*width: 100%;*/
+/*}*/
+
+/*.fixedTable {*/
+    /*position: fixed;*/
+    /*top: 100px;*/
+    /*width: 100%;*/
+/*}*/
 
 .selectingDiv {
     font-size: 125%;
@@ -90,6 +106,11 @@ th, td {
 
 .tallButton {
     font-size: 175%;
+}
+
+.selectionButton {
+    min-width: 50px;
+    min-height: 50px;
 }
 
 .searchRow {

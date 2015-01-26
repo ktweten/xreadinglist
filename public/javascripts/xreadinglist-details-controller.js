@@ -20,7 +20,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                 id: issueId
             }).success(function(data, status, headers, config) {
                 var link = "http://gateway.marvel.com:80/v1/public/comics?title=",
-                    key;
+                    index;
 
                 if (data.length > 0){
                     self.issue = data[0];
@@ -32,15 +32,22 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
 
                     self.link = "";
                     $http.get(link).success(function(data, status, headers, config) {
+                        var urls = data.data.results[0].urls;
                         self.rawData = data.data;
                         self.results = data.data.results;
                         self.result = self.results[0];
-                        self.urls = data.data.results[0].urls;
-                        self.img = data.data.results[0].thumbnail;
+//                        self.urls = data.data.results[0].urls;
+                        for (index = 0; index < urls.length; index += 1) {
+                            if (urls[index].type === "reader") {
+                                self.url = urls[index];
+                                break;
+                            }
+                        }
+                        //self.img = data.data.results[0].thumbnail;
                     }).
                         error(function(data, status, headers, config) {
                             self.link = data;
-                        });
+                    });
                 }
             });
         } else {
