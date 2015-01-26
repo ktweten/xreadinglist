@@ -102,7 +102,7 @@ router.post('/issues', function(req, res) {
     conditions.push({ year: {$gte: req.body.startYear, $lte: req.body.endYear} });
 
     if (conditions.length > 0) {
-        IssueModel.find( { $and: conditions }, { series: 1, volume: 1, number: 1, _id: 1 }, function(err, doc) {
+        IssueModel.find( { $and: conditions }, { series: 1, volume: 1, number: 1, _id: 1, coverRoot: 1, extension: 1 }, function(err, doc) {
             if (err) {
                 console.log(err);
             } else {

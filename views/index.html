@@ -110,7 +110,9 @@
                         ng-show="volume.issues.length > 1"
                         ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
-                    <button class="btn btn-default" ng-repeat="issue in volume.issues" ng-click="detailsCtrl.getDetails(issue._id)">
+                    <button class="btn btn-default coverButton"
+                            ng-repeat="issue in volume.issues" ng-click="detailsCtrl.getDetails(issue._id)"
+                            ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.jpg)' }">
                         {{issue.number}}
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">

@@ -36,14 +36,13 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                         self.rawData = data.data;
                         self.results = data.data.results;
                         self.result = self.results[0];
-//                        self.urls = data.data.results[0].urls;
+
                         for (index = 0; index < urls.length; index += 1) {
                             if (urls[index].type === "reader") {
                                 self.url = urls[index];
                                 break;
                             }
                         }
-                        //self.img = data.data.results[0].thumbnail;
                     }).
                         error(function(data, status, headers, config) {
                             self.link = data;
