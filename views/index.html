@@ -31,11 +31,11 @@
     </p>
 </header>
 <body ng-app="xReadingList"  ng-controller="QueryController as queryCtrl">
-    <div class="queryDiv" ng-show="queryCtrl.showQuery">
-        <form id="queryForm">
+    <div class="wide queryDiv listDiv" ng-show="queryCtrl.showQuery">
+        <form id="wide queryForm">
             <h1 class="heading">Search for issues:</h1>
-            <div ng-repeat="list in queryCtrl.lists">
-                <a type="button" class="btn btn-default btn-block tallButton" data-toggle="button"
+            <div class="wide list-div" ng-repeat="list in queryCtrl.lists">
+                <a type="button" class="btn btn-default btn-block tallButton selecting-title" data-toggle="button"
                     ng-click="list.selecting = !list.selecting">
                     {{list.title}}
                 </a>
@@ -100,7 +100,7 @@
         </form>
     </div>
 
-    <div class="queryDiv" ng-hide="queryCtrl.showQuery">
+    <div class="resultsDiv listDiv" ng-hide="queryCtrl.showQuery">
         <h1 class="heading">Found: {{queryCtrl.issues}}</h1>
         <div class="comicDiv" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'">
             <p class="seriesHeading">{{comic.name}}</p>
