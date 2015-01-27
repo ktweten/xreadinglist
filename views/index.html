@@ -113,15 +113,16 @@
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
                     <button class="btn btn-default coverButton"
                             ng-repeat="issue in volume.issues"
-                            ng-click="detailsCtrl.getDetails(issue._id, issue.coverRoot)">
+                            ng-click="detailsCtrl.getDetails(issue._id)">
                             <!--ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.jpg)' }">-->
                         {{issue.number}}
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">
                         <img class="issueCover"
-                             src="{{detailsCtrl.issue.coverRoot}}/portrait_uncanny.{{detailsCtrl.issue.extension}}"
-                             alt="{{detailsCtrl.issue.coverRoot}}/portrait_uncanny.{{detailsCtrl.issue.extension}}">
+                             src="{{detailsCtrl.getCoverPath()}}"
+                             alt="{{detailsCtrl.getCoverPath()}}">
                         <div class="infoDiv">
+                            <p>Debug: {{detailsCtrl.debug}}</p>
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
                             <p>{{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}</p>
                         </div>

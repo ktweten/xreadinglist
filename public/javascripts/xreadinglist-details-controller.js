@@ -10,6 +10,16 @@ angular.module('xReadingList').controller('DetailsController', ['$http', 'Marvel
     self.data = [];
     self.urls = [];
 
+    self.getCoverPath = function() {
+        var coverPath = "";
+
+        if (self.issue.coverRoot) {
+            coverPath = self.issue.coverRoot + "/portrait_uncanny."  + self.issue.extension;
+        }
+
+        return coverPath;
+    }
+
     self.getDetails = function(issueId) {
 
         if (issueId !== self.lastId) {
@@ -29,6 +39,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', 'Marvel
                     self.issue.coverRoot = marvelData.imageRoot;
                     self.issue.extension = marvelData.extension;
                     self.issue.urls = marvelData.urls;
+                    self.debug = marvelData.debug;
 
 
                     //if (self.issue.coverRoot.length < 1) {

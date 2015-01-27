@@ -9,14 +9,18 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         cache[series + year + number] = {
             imageRoot: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
             extension: "jpg",
-            urls: [{type: "Plonk", url: "Over there"}, {type: "Donk", url: "Anywhere"}, {type: "Ook", url: "The Library"}]
+            urls: [{type: "Plonk", url: "Over there"}, {type: "Donk", url: "Anywhere"}, {type: "Ook", url: "The Library"}],
+            debug: "Added"
         }
     }
 
     function updateCacheEntry(series, year, number, imageRoot, extension, urls) {
-        cache[series + year + number].imageRoot = imageRoot;
-        cache[series + year + number].extension = extension;
-        cache[series + year + number].urls = urls;
+        var key = series + year + number;
+
+        cache[key].imageRoot = imageRoot;
+        cache[key].extension = extension;
+        cache[key].urls = urls;
+        cache[key].debug = "Returned from Marvel";
     }
 
     function makeIssueCallback(s, y, n) {
@@ -43,20 +47,16 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
     function queryMarvelAPI(series, year, number) {
         var link = "http://gateway.marvel.com:80/v1/public/comics?title=";
 
-        //if (self.issue.coverRoot.length < 1) {
-        //    self.issue.coverRoot = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
-        //    self.issue.extension = "jpg";
-        //}
-
         link = link.concat(series);
         link = link.concat('$startYear=' + year);
         link = link.concat('&issueNumber=' + number);
         link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
 
+        cache[series + year + number].debug = "Querying"
         $http.get(link)
         .success(makeIssueCallback(series, year, number))
         .error(function(data, status, headers, config) {
-                //?
+            cache[series + year + number].debug = "Error: " + data;
         });
     }
 
@@ -65,7 +65,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
 
         if (!cache[key]) {
             addCacheEntry(series, year, number);
-            //queryMarvelAPI(series, year, number);
+            queryMarvelAPI(series, year, number);
         }
 
         return cache[key];
