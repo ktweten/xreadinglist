@@ -43,13 +43,13 @@
                     <p ng-repeat="line in list.getDescription()">{{line}}</p>
                 </div>
 
-                <div class="selectingDiv" ng-show="list.selecting">
+                <div class="wide selectingDiv" ng-show="list.selecting">
                     <div class="searchRow" ng-class="list.selecting ? 'fixedSearch' : ''">
                         <label>Search: </label>
                         <input class="darkText" type="text" ng-model="list.searchText">
                         <button class="darkText" ng-click="list.clearSelections()">Clear Selections</button>
                     </div>
-                    <table class="listTable">
+                    <table class="table listTable">
                         <thead class="selectionHeading">
                             <th class="headingTitle"></th>
                             <th class="headingTitle" ng-show="list.hasAllColumn">All Of</td>
@@ -59,22 +59,22 @@
                         <tbody>
                             <tr ng-repeat="name in list.names | filter:list.searchText"
                                 ng-class-odd="'lightRow'">
-                                <td class="nameEntry">{{name}}</td>
-                                <td ng-show="list.hasAllColumn">
+                                <td class="col-md-3 nameEntry">{{name}}</td>
+                                <td class="col-md-1" ng-show="list.hasAllColumn">
                                     <button type="button"
                                             class="btn btn-lrg selectionButton"
                                             ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
                                             ng-click="list.toggleList('All', name)">
                                     </button>
                                 </td>
-                                <td>
+                                <td class="col-md-1">
                                     <button type="button"
                                             class="btn btn-lrg selectionButton"
                                             ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
                                             ng-click="list.toggleList('Any', name)">
                                     </button>
                                 </td>
-                                <td>
+                                <td class="col-md-1">
                                     <button type="button"
                                             class="btn btn-lrg selectionButton"
                                             ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"
@@ -105,13 +105,14 @@
         <div class="comicDiv" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'">
             <p class="seriesHeading">{{comic.name}}</p>
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
-                <label ng-show="volume.name">Volume {{volume.name}}</label>
+                <label ng-show="volume.name">{{volume.name}}</label>
                 <button type="button" class="btn btn-info btn-lrg" data-toggle="button"
                         ng-show="volume.issues.length > 1"
                         ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
                     <button class="btn btn-default coverButton"
-                            ng-repeat="issue in volume.issues" ng-click="detailsCtrl.getDetails(issue._id)"
+                            ng-repeat="issue in volume.issues"
+                            ng-click="detailsCtrl.getDetails(issue._id, issue.coverRoot)"
                             ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.jpg)' }">
                         {{issue.number}}
                     </button>

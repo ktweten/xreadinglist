@@ -25,6 +25,11 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
                 if (data.length > 0){
                     self.issue = data[0];
 
+                    if (self.issue.coverRoot.length < 1) {
+                        self.issue.coverRoot = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
+                        self.issue.extension = "jpg";
+                    }
+
                     link = link.concat(self.issue.series);
                     link = link.concat('&issueNumber=');
                     link = link.concat(self.issue.number);

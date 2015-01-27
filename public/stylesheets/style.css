@@ -17,7 +17,7 @@ header {
 .listTable {
     background-color: lightgray;
     display: block;
-    /*max-height: 350px;*/
+    table-layout: fixed;
 }
 
 .selectingDiv {
@@ -40,10 +40,6 @@ header {
     min-width: 100%;
     min-height: 100%;
     vertical-align: top;
-}
-
-.nameEntry {
-    width: 50%;
 }
 
 .darkText {
@@ -71,7 +67,6 @@ header {
 table {
     font-size: 125%;
     table-layout: fixed;
-    width: inherit;
 }
 
 th, td {
