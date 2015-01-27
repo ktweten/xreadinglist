@@ -30,33 +30,25 @@ angular.module('xReadingList').controller('DetailsController', ['$http', 'Marvel
             $http.post('/details', {
                 id: issueId
             }).success(function(data, status, headers, config) {
-                var marvelData,
-                    link = "http://gateway.marvel.com:80/v1/public/comics?title=";
+                var link;
 
                 if (data.length > 0){
                     self.issue = data[0];
 
-                    // Get the cover and links from the service used to query/cache them.
-                    //marvelData = MarvelService.getInfo(self.issue.series, self.issue.volume, self.issue.number);
-                    //self.issue.coverRoot = marvelData.imageRoot;
-                    //self.issue.extension = marvelData.extension;
-                    //self.issue.urls = marvelData.urls;
-                    //self.debug = marvelData.debug;
+                    link = "http://gateway.marvel.com:80/v1/public/comics?title=" + self.issue.series +
+                    "&startYear=" + self.issue.volume +
+                    "&issueNumber=" + self.issue.number +
+                    "&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4";
 
-                    link = link.concat(self.issue.series);
-                    link = link.concat('&startYear=' + self.issue.volume);
-                    link = link.concat('&issueNumber=' + self.issue.number);
-                    link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
-
-                    $http.get(link).success(function(data, status, headers, config) {
+                    $http.get(link, { cache: true }).success(function(data, status, headers, config) {
                         if (data.data && data.data.results && data.data.results.length > 0) {
                             self.issue.coverRoot = data.data.results[0].thumbnail.path;
                             self.issue.extension = data.data.results[0].thumbnail.extension;
                             self.issue.urls = data.data.results[0].urls;
                         }
                     }).
-                        error(function(data, status, headers, config) {
-                            self.link = data;
+                    error(function(data, status, headers, config) {
+                        //?
                     });
                 }
             });
