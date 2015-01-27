@@ -27,8 +27,10 @@ angular.module('xReadingList').factory('NameList', ['$http', function($http) {
         self.hasAllColumn = allColumn;
 
         $http.post('/list', { listName: name }).success(function (doc) {
-            self.names = doc[0].names;
-            self.names.sort();
+            if (doc && doc.length > 0) {
+                self.names = doc[0].names;
+                self.names.sort();
+            }
         });
 
         this.clearSelections = function() {

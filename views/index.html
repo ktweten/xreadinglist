@@ -3,13 +3,14 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>X-ReadingList</title>
-    <script src="javascripts/angular.js"></script>
+    <script src="javascripts/angular.min.js"></script>
     <script src="javascripts/jquery-2.1.1.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="javascripts/xReadingList.js"></script>
     <script src="javascripts/xreadinglist-namelist-factory.js"></script>
     <script src="javascripts/xreadinglist-collection-factory.js"></script>
     <script src="javascripts/xreadinglist-sequence-filter.js"></script>
+    <script src="javascripts/xreadinglist-marvel-service.js"></script>
     <script src="javascripts/xreadinglist-details-controller.js"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
@@ -112,8 +113,8 @@
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
                     <button class="btn btn-default coverButton"
                             ng-repeat="issue in volume.issues"
-                            ng-click="detailsCtrl.getDetails(issue._id, issue.coverRoot)"
-                            ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.jpg)' }">
+                            ng-click="detailsCtrl.getDetails(issue._id, issue.coverRoot)">
+                            <!--ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.jpg)' }">-->
                         {{issue.number}}
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">
@@ -140,12 +141,9 @@
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
-                            <a class="readerLink"
-                               ng-show="detailsCtrl.url" href="{{detailsCtrl.url.url}}" target="_blank">
-                                Read at Marvel.com</a>
-                            <!--<span ng-repeat="url in detailsCtrl.urls">-->
-                                <!--<a href="{{url.url}}" target="blank">{{url.type}}</a>-->
-                            <!--</span>-->
+                            <span ng-repeat="url in detailsCtrl.issue.urls">
+                                <a class="readerLink" href="{{url.url}}" target="blank">{{url.type}}</a></br>
+                            </span>
                         </div>
                     </div>
                 </div>

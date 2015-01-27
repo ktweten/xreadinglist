@@ -17,9 +17,7 @@ var issueSchema = mongoose.Schema({
       volume: String,
       number: String,
       month: String,
-      year: Number,
-      coverRoot: String,
-      extension: String},
+      year: Number},
     {collection: 'issues'});
 var IssueModel = mongoose.model("IssueModel", issueSchema);
 var connection = mongoose.connect('mongodb://listReader:r1o9g8u1e@ds027771.mongolab.com:27771/xcomics');
