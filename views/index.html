@@ -113,14 +113,14 @@
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
                     <button class="btn btn-default coverButton"
                             ng-repeat="issue in volume.issues"
-                            ng-click="detailsCtrl.getDetails(issue._id)">
-                            <!--ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.jpg)' }">-->
+                            ng-click="detailsCtrl.getDetails(issue)"
+                            ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }">
                         {{issue.number}}
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">
                         <img class="issueCover"
-                             src="{{detailsCtrl.getCoverPath()}}"
-                             alt="{{detailsCtrl.getCoverPath()}}">
+                             src="{{detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension}}"
+                             alt="{{detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension}}">
                         <div class="infoDiv">
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
                             <p>{{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}</p>
@@ -141,7 +141,7 @@
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
-                            <span ng-repeat="url in detailsCtrl.issue.urls">
+                            <span ng-repeat="url in detailsCtrl.urls">
                                 <a class="readerLink" href="{{url.url}}" target="blank">{{url.type}}</a></br>
                             </span>
                         </div>

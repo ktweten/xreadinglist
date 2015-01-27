@@ -12,7 +12,7 @@ function issueSort(a, b) {
     }
 }
 
-angular.module('xReadingList').factory('Collection', [function() {
+angular.module('xReadingList').factory('Collection', [ 'MarvelService', function(MarvelService) {
     function CreateCollection() {
         var self = this;
 
@@ -83,6 +83,13 @@ angular.module('xReadingList').factory('Collection', [function() {
                         break;
                     }
                 }
+
+                // Add marvel data to issue?
+                issue.coverRoot = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
+                issue.extension = "jpg";
+                issue.urls = [{type: "Test", url: "Over there"}];
+
+                MarvelService.getMarvelData(issue);
 
                 if (issueIndex === issueList.length) {
                     issueList.push(issue);
