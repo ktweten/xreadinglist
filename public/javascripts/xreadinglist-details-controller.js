@@ -9,6 +9,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', 'Marvel
     self.lastId = null;
     self.data = [];
     self.urls = [];
+    self.marvelService = MarvelService;
 
     self.getCoverPath = function() {
         var coverPath = "";
@@ -18,7 +19,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', 'Marvel
         }
 
         return coverPath;
-    }
+    };
 
     self.getDetails = function(issueId) {
 
@@ -29,39 +30,34 @@ angular.module('xReadingList').controller('DetailsController', ['$http', 'Marvel
             $http.post('/details', {
                 id: issueId
             }).success(function(data, status, headers, config) {
-                var marvelData;
+                var marvelData,
+                    link = "http://gateway.marvel.com:80/v1/public/comics?title=";
 
                 if (data.length > 0){
                     self.issue = data[0];
 
                     // Get the cover and links from the service used to query/cache them.
-                    marvelData = MarvelService.getInfo(self.issue.series, self.issue.volume, self.issue.number);
-                    self.issue.coverRoot = marvelData.imageRoot;
-                    self.issue.extension = marvelData.extension;
-                    self.issue.urls = marvelData.urls;
-                    self.debug = marvelData.debug;
+                    //marvelData = MarvelService.getInfo(self.issue.series, self.issue.volume, self.issue.number);
+                    //self.issue.coverRoot = marvelData.imageRoot;
+                    //self.issue.extension = marvelData.extension;
+                    //self.issue.urls = marvelData.urls;
+                    //self.debug = marvelData.debug;
 
+                    link = link.concat(self.issue.series);
+                    link = link.concat('&startYear=' + self.issue.volume);
+                    link = link.concat('&issueNumber=' + self.issue.number);
+                    link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
 
-                    //if (self.issue.coverRoot.length < 1) {
-                    //    self.issue.coverRoot = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
-                    //    self.issue.extension = "jpg";
-                    //}
-                    //
-                    //link = link.concat(self.issue.series);
-                    //link = link.concat('&issueNumber=');
-                    //link = link.concat(self.issue.number);
-                    //link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
-                    //
-                    //self.link = "";
-                    //$http.get(link).success(function(data, status, headers, config) {
-                    //    self.urls = data.data.results[0].urls;
-                    //    self.rawData = data.data;
-                    //    self.results = data.data.results;
-                    //    self.result = self.results[0];
-                    //}).
-                    //    error(function(data, status, headers, config) {
-                    //        self.link = data;
-                    //});
+                    $http.get(link).success(function(data, status, headers, config) {
+                        if (data.data && data.data.results && data.data.results.length > 0) {
+                            self.issue.coverRoot = data.data.results[0].thumbnail.path;
+                            self.issue.extension = data.data.results[0].thumbnail.extension;
+                            self.issue.urls = data.data.results[0].urls;
+                        }
+                    }).
+                        error(function(data, status, headers, config) {
+                            self.link = data;
+                    });
                 }
             });
         } else {

@@ -3,10 +3,13 @@
  */
 
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
-    var cache = {};
+    var self = this;
+
+    self.status = "Idle";
+    self.cache = {};
 
     function addCacheEntry(series, year, number) {
-        cache[series + year + number] = {
+        self.cache[series + year + number] = {
             imageRoot: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
             extension: "jpg",
             urls: [{type: "Plonk", url: "Over there"}, {type: "Donk", url: "Anywhere"}, {type: "Ook", url: "The Library"}],
@@ -17,10 +20,10 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
     function updateCacheEntry(series, year, number, imageRoot, extension, urls) {
         var key = series + year + number;
 
-        cache[key].imageRoot = imageRoot;
-        cache[key].extension = extension;
-        cache[key].urls = urls;
-        cache[key].debug = "Returned from Marvel";
+        self.cache[key].imageRoot = imageRoot;
+        self.cache[key].extension = extension;
+        self.cache[key].urls = urls;
+        self.cache[key].debug = "Returned from Marvel";
     }
 
     function makeIssueCallback(s, y, n) {
@@ -38,6 +41,9 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 urls = data.data.results[0].urls;
                 imageRoot = data.data.results[0].thumbnail.path;
                 extension = data.data.results[0].thumbnail.extension;
+                self.status = "Returned data";
+            } else {
+                self.status = "Returned no data";
             }
 
             updateCacheEntry(series, year, number, imageRoot, extension, urls);
@@ -52,27 +58,30 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         link = link.concat('&issueNumber=' + number);
         link = link.concat('&hasDigitalIssue=true&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4');
 
-        cache[series + year + number].debug = "Querying"
+        self.cache[series + year + number].debug = "Querying";
+        self.status = "Sending";
         $http.get(link)
         .success(makeIssueCallback(series, year, number))
         .error(function(data, status, headers, config) {
-            cache[series + year + number].debug = "Error: " + data;
+            self.cache[series + year + number].debug = "Error: " + data;
+            self.status = "Error: " + data;
         });
     }
 
     function getInfo(series, year, number) {
         var key = series + year + number;
 
-        if (!cache[key]) {
+        if (!self.cache[key]) {
             addCacheEntry(series, year, number);
             queryMarvelAPI(series, year, number);
         }
 
-        return cache[key];
+        return self.cache[key];
     }
 
 
     return {
-        getInfo: getInfo
+        getInfo: getInfo,
+        status: self.status
     };
 }]);
