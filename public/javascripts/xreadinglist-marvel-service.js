@@ -4,44 +4,25 @@
 
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
      function makeIssueCallback(issue, col) {
-        var collection = col,
-            foundIssue = issue;
+        var foundIssue = issue;
 
-        return function(data, status, headers, config) {
-            var result;
-
-            //if (data.data && data.data.results && data.data.results.length > 0) {
-            //    foundIssue.coverRoot = data.data.results[0].thumbnail.path;
-            //    foundIssue.extension = data.data.results[0].thumbnail.extension;
-            //    foundIssue.urls = data.data.results[0].urls;
-            //}
-
-            if (data.data  && data.data.results) {
-                for (result = 0; result < data.data.results.length; result += 1) {
-                    foundIssue.thumbnail = data.data.results[result].thumbnail;
-                    foundIssue.urls = data.data.results[result].urls;
-                    collection.setCover(foundIssue);
-
-                    //for (issue = 0; issue < list.length; issue += 1) {
-                    //    if (list[issue].number === data.data.results[result].issueNumber) {
-                    //        foundIssue = list[issue];
-                    //        foundIssue.coverRoot = data.data.results[result].thumbnail.path;
-                    //        foundIssue.extension = data.data.results[result].thumbnail.extension;
-                    //        foundIssue.urls = data.data.results[result].urls;
-                    //    }
-                    //}
-                }
+        return function(res, status, headers, config) {
+            if (res.data && res.data.results && res.data.results.length > 0) {
+                foundIssue.coverRoot = res.data.results[0].thumbnail.path;
+                foundIssue.extension = res.data.results[0].thumbnail.extension;
+                foundIssue.urls = res.data.results[0].urls;
             }
         }
     }
 
-    function getMarvelData(issue, issueList) {
+    function getMarvelData(issue) {
         var link = "http://gateway.marvel.com:80/v1/public/comics?title=" + issue.series +
             "&startYear=" + issue.volume +
+            "&issueNumber=" + issue.number +
             "&noVariants=true"+
             "&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4";
 
-        $http.get(link, { cache: true }).success(makeIssueCallback(issue, issueList)).
+        $http.get(link, { cache: true }).success(makeIssueCallback(issue)).
         error(function(data, status, headers, config) {
             //?
         });
