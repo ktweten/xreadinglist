@@ -4,13 +4,13 @@
 
 function addToSequence(sequence, start, end) {
     if (sequence.length > 0) {
-        sequence = sequence + ", ";
+        sequence = sequence + ', ';
     }
 
     if (start === end) {
         sequence = sequence + end;
     } else {
-        sequence = sequence + start + "-" + end;
+        sequence = sequence + start + '-' + end;
     }
     return sequence;
 }
@@ -20,7 +20,7 @@ angular.module('xReadingList').filter('sequence', function() {
         var index,
             startNumber,
             endNumber,
-            sequenceString = "";
+            sequenceString = '';
 
         if (numbers.length === 1) {
             sequenceString = numbers[0].number;

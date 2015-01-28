@@ -84,9 +84,9 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     }
                 }
 
-                issue.coverRoot = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
-                issue.extension = "jpg";
-                issue.urls = [{type: "Marvel.com", url: "http://www.marvel.com"}];
+                issue.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+                issue.extension = 'jpg';
+                issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
 
                 MarvelService.getMarvelData(issue);
 
