@@ -78,6 +78,12 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     issue.number = 'Oneshot';
                 }
 
+                for (issueIndex = 0; issueIndex < issueList.length; issueIndex += 1) {
+                    if (issueList[issueIndex] === issue.number) {
+                        break;
+                    }
+                }
+
                 issue.coverRoot = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
                 issue.extension = "jpg";
                 issue.urls = [{type: "Marvel.com", url: "http://www.marvel.com"}];
