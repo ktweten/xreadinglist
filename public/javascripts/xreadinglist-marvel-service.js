@@ -3,26 +3,42 @@
  */
 
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
-     function makeIssueCallback(issue) {
+     function makeIssueCallback(issue, issueList) {
         var foundIssue = issue;
 
         return function(data, status, headers, config) {
-            if (data.data && data.data.results && data.data.results.length > 0) {
-                foundIssue.coverRoot = data.data.results[0].thumbnail.path;
-                foundIssue.extension = data.data.results[0].thumbnail.extension;
-                foundIssue.urls = data.data.results[0].urls;
+            var result,
+                issue,
+                foundIssue;
+
+            //if (data.data && data.data.results && data.data.results.length > 0) {
+            //    foundIssue.coverRoot = data.data.results[0].thumbnail.path;
+            //    foundIssue.extension = data.data.results[0].thumbnail.extension;
+            //    foundIssue.urls = data.data.results[0].urls;
+            //}
+
+            if (data.data  && data.data.results) {
+                for (result = 0; result < data.data.results.length; result += 1) {
+                    for (issue = 0; issue < issueList.length; issue += 1) {
+                        if (issueList[issue].number === data.data.results[result].issueNumber) {
+                            foundIssue = issueList[issue];
+                            foundIssue.coverRoot = data.data.results[result].thumbnail.path;
+                            foundIssue.extension = data.data.results[result].thumbnail.extension;
+                            foundIssue.urls = data.data.results[result].urls;
+                        }
+                    }
+                }
             }
         }
     }
 
-    function getMarvelData(issue) {
+    function getMarvelData(issue, issueList) {
         var link = "http://gateway.marvel.com:80/v1/public/comics?title=" + issue.series +
             "&startYear=" + issue.volume +
-            "&issueNumber=" + issue.number +
             "&noVariants=true"+
             "&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4";
 
-        $http.get(link, { cache: true }).success(makeIssueCallback(issue)).
+        $http.get(link, { cache: true }).success(makeIssueCallback(issue, issueList)).
         error(function(data, status, headers, config) {
             //?
         });
