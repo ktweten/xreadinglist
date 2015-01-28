@@ -22,6 +22,20 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
             self.comics = [];
         };
 
+        self.setCover = function(issueData) {
+            var series = self.getSeries(issueData.title),
+                issues = self.getIssues(series, issueData.volume),
+                index;
+
+            for (index = 0; index < issues.length; index += 1) {
+                if (issues[index].number === issueData.number) {
+                    issues[index].coverRoot = issueData.thumbnail.path;
+                    issues[index].extension = issueData.thumbnail.extension;
+                    issues[index].urls = issueData.urls;
+                }
+            }
+        };
+
         self.getSeries = function(title) {
             var series = null,
                 index;
@@ -93,7 +107,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     issueList.sort(issueSort);
                 }
 
-                MarvelService.getMarvelData(issue, issueList);
+                MarvelService.getMarvelData(issue, self);
             }
         }
     }

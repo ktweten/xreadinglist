@@ -3,14 +3,12 @@
  */
 
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
-     function makeIssueCallback(issue, issueList) {
-        var list = issueList,
+     function makeIssueCallback(issue, col) {
+        var collection = col,
             foundIssue = issue;
 
         return function(data, status, headers, config) {
-            var result,
-                issue,
-                foundIssue;
+            var result;
 
             //if (data.data && data.data.results && data.data.results.length > 0) {
             //    foundIssue.coverRoot = data.data.results[0].thumbnail.path;
@@ -20,14 +18,18 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
 
             if (data.data  && data.data.results) {
                 for (result = 0; result < data.data.results.length; result += 1) {
-                    for (issue = 0; issue < list.length; issue += 1) {
-                        if (list[issue].number === data.data.results[result].issueNumber) {
-                            foundIssue = list[issue];
-                            foundIssue.coverRoot = data.data.results[result].thumbnail.path;
-                            foundIssue.extension = data.data.results[result].thumbnail.extension;
-                            foundIssue.urls = data.data.results[result].urls;
-                        }
-                    }
+                    foundIssue.thumbnail = data.data.results[result].thumbnail;
+                    foundIssue.urls = data.data.results[result].urls;
+                    collection.setCover(foundIssue);
+
+                    //for (issue = 0; issue < list.length; issue += 1) {
+                    //    if (list[issue].number === data.data.results[result].issueNumber) {
+                    //        foundIssue = list[issue];
+                    //        foundIssue.coverRoot = data.data.results[result].thumbnail.path;
+                    //        foundIssue.extension = data.data.results[result].thumbnail.extension;
+                    //        foundIssue.urls = data.data.results[result].urls;
+                    //    }
+                    //}
                 }
             }
         }
