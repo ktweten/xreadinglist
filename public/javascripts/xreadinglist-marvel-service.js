@@ -36,7 +36,6 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
     function getMarvelData(issue, issueList) {
         var link = "http://gateway.marvel.com:80/v1/public/comics?title=" + issue.series +
             "&startYear=" + issue.volume +
-            "&issueNumber=" + issue.number +
             "&noVariants=true"+
             "&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4";
 
