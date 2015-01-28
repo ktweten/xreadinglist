@@ -79,7 +79,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 }
 
                 for (issueIndex = 0; issueIndex < issueList.length; issueIndex += 1) {
-                    if (issueList[issueIndex] === issue.number) {
+                    if (issueList[issueIndex].number === issue.number) {
                         break;
                     }
                 }
