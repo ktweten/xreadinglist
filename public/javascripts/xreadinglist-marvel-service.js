@@ -5,7 +5,7 @@
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
      function makeIssueCallback(issue, issueList) {
         var list = issueList,
-            coundIssue = issue;
+            foundIssue = issue;
 
         return function(data, status, headers, config) {
             //var result,
