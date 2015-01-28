@@ -119,8 +119,8 @@
                     </button>
                     <div class="issueDiv" ng-show="detailsCtrl.showDetails">
                         <img class="issueCover"
-                             src="{{detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension}}"
-                             alt="{{detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension}}">
+                             ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
+                             alt="">
                         <div class="infoDiv">
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
                             <p>{{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}</p>

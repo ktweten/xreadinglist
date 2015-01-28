@@ -8,6 +8,8 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
     self.showDetails = false;
     self.lastId = null;
     self.urls = [];
+    self.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+    self.extension = 'jpg';
 
     self.getDetails = function(issue) {
 
