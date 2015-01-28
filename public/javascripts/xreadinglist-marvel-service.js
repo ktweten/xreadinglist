@@ -4,7 +4,7 @@
 
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
      function makeIssueCallback(issue, issueList) {
-        var foundIssue = issue;
+        var list = issueList;
 
         return function(data, status, headers, config) {
             var result,
@@ -19,9 +19,9 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
 
             if (data.data  && data.data.results) {
                 for (result = 0; result < data.data.results.length; result += 1) {
-                    for (issue = 0; issue < issueList.length; issue += 1) {
-                        if (issueList[issue].number === data.data.results[result].issueNumber) {
-                            foundIssue = issueList[issue];
+                    for (issue = 0; issue < list.length; issue += 1) {
+                        if (list[issue].number === data.data.results[result].issueNumber) {
+                            foundIssue = list[issue];
                             foundIssue.coverRoot = data.data.results[result].thumbnail.path;
                             foundIssue.extension = data.data.results[result].thumbnail.extension;
                             foundIssue.urls = data.data.results[result].urls;
