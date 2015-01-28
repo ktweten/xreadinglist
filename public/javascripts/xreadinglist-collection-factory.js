@@ -88,12 +88,12 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 issue.extension = "jpg";
                 issue.urls = [{type: "Marvel.com", url: "http://www.marvel.com"}];
 
-                MarvelService.getMarvelData(issue, issueList);
-
                 if (issueIndex === issueList.length) {
                     issueList.push(issue);
                     issueList.sort(issueSort);
                 }
+
+                MarvelService.getMarvelData(issue, issueList);
             }
         }
     }
