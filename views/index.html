@@ -38,7 +38,7 @@
         <form id="wide queryForm">
             <h1 class="heading">Search for issues:</h1>
             <div class="wide list-div" ng-repeat="list in queryCtrl.lists">
-                <a type="button" class="btn btn-default btn-block btn-large tallButton selecting-title" data-toggle="button"
+                <a type="button" class="btn btn-default btn-lg selecting-title" data-toggle="button"
                    ng-click="list.setSelecting()">
                     {{list.title}}
                 </a>
@@ -99,7 +99,7 @@
                 </div>
             </div>
 
-            <button  type="button" class="btn btn-primary btn-block tallButton btn-large" ng-click="queryCtrl.query()">Search</button>
+            <button  type="button" class="btn btn-primary btn-lg" ng-click="queryCtrl.query()">Search</button>
         </form>
     </div>
 
@@ -109,7 +109,7 @@
             <p class="seriesHeading">{{comic.name}}</p>
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
                 <label ng-show="volume.name">{{volume.name}}</label>
-                <button type="button" class="btn btn-info btn-large sequence-btn" data-toggle="button"
+                <button type="button" class="btn btn-info btn-lg sequence-btn" data-toggle="button"
                         ng-show="volume.issues.length > 1"
                         ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-block tallButton" ng-click="queryCtrl.hideResults()">New Search</button>
+        <button type="button" class="btn btn-primary btn-lg" ng-click="queryCtrl.hideResults()">New Search</button>
     </div>
 </body>
 </html>
