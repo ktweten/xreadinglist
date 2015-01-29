@@ -3,10 +3,12 @@
 <head name="viewport" content="width=device-width, initial-scale=1" lang="en">
     <meta charset="UTF-8">
     <title>X-ReadingList</title>
-    <script src="javascripts/angular.min.js"></script>
     <script src="javascripts/jquery-2.1.1.js"></script>
+    <script src="javascripts/angular.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="javascripts/xReadingList.js"></script>
+    <script src="javascripts/ng-infinite-scroll.min.js"></script>
+    <script src="javascripts/xreadinglist-list-controller.js"></script>
     <script src="javascripts/xreadinglist-namelist-factory.js"></script>
     <script src="javascripts/xreadinglist-collection-factory.js"></script>
     <script src="javascripts/xreadinglist-sequence-filter.js"></script>
@@ -37,7 +39,7 @@
             <h1 class="heading">Search for issues:</h1>
             <div class="wide list-div" ng-repeat="list in queryCtrl.lists">
                 <a type="button" class="btn btn-default btn-block btn-large tallButton selecting-title" data-toggle="button"
-                    ng-click="list.selecting = !list.selecting">
+                   ng-click="list.setSelecting()">
                     {{list.title}}
                 </a>
                 <div class="selectionSummary lightText" ng-hide="list.selecting || list.getDescription().length < 1"
@@ -57,8 +59,8 @@
                             <th class="headingTitle">Any Of</td>
                             <th class="headingTitle">Excluding</td>
                         </thead>
-                        <tbody>
-                            <tr ng-repeat="name in list.names | filter:list.searchText"
+                        <tbody infinite-scroll="list.increaseLimit()">
+                            <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
                                 ng-class-odd="'lightRow'">
                                 <td class="col-xs-8 nameEntry">{{name}}</td>
                                 <td class="col-xs-1" ng-show="list.hasAllColumn">

@@ -25,6 +25,7 @@ angular.module('xReadingList').factory('NameList', ['$http', function($http) {
         self.excluded = [];
         self.selecting = false;
         self.hasAllColumn = allColumn;
+        self.limit = 100;
 
         $http.post('/list', { listName: name }).success(function (doc) {
             if (doc && doc.length > 0) {
@@ -32,6 +33,15 @@ angular.module('xReadingList').factory('NameList', ['$http', function($http) {
                 self.names.sort();
             }
         });
+
+        this.setSelecting = function() {
+            self.selecting = !self.selecting;
+            self.limit = 100;
+        };
+
+        this.increaseLimit = function() {
+            self.limit += 100;
+        };
 
         this.clearSelections = function() {
             self.allOf = [];

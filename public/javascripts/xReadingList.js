@@ -1,7 +1,7 @@
 /**
  * Created by Kelly on 1/2/2015.
  */
-var xReadingListApp = angular.module('xReadingList', []);
+var xReadingListApp = angular.module('xReadingList', ['infinite-scroll']);
 
 xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection', function($http, NameList, Collection) {
     var self = this;
