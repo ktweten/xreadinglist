@@ -61,27 +61,27 @@
                             <tr ng-repeat="name in list.names | filter:list.searchText"
                                 ng-class-odd="'lightRow'">
                                 <td class="col-xs-8 nameEntry">{{name}}</td>
-                                <!--<td class="col-xs-1" ng-show="list.hasAllColumn">-->
-                                    <!--<button type="button"-->
-                                            <!--class="btn selectionButton"-->
-                                            <!--ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"-->
-                                            <!--ng-click="list.toggleList('All', name)">-->
-                                    <!--</button>-->
-                                <!--</td>-->
-                                <!--<td class="col-xs-1">-->
-                                    <!--<button type="button"-->
-                                            <!--class="btn selectionButton"-->
-                                            <!--ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"-->
-                                            <!--ng-click="list.toggleList('Any', name)">-->
-                                    <!--</button>-->
-                                <!--</td>-->
-                                <!--<td class="col-xs-1">-->
-                                    <!--<button type="button"-->
-                                            <!--class="btn selectionButton"-->
-                                            <!--ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"-->
-                                            <!--ng-click="list.toggleList('Exclude', name)">-->
-                                    <!--</button>-->
-                                <!--</td>-->
+                                <td class="col-xs-1" ng-show="list.hasAllColumn">
+                                    <button type="button"
+                                            class="btn selectionButton"
+                                            ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
+                                            ng-click="list.toggleList('All', name)">
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button type="button"
+                                            class="btn selectionButton"
+                                            ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
+                                            ng-click="list.toggleList('Any', name)">
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button type="button"
+                                            class="btn selectionButton"
+                                            ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"
+                                            ng-click="list.toggleList('Exclude', name)">
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
