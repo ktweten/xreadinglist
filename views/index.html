@@ -38,55 +38,57 @@
         <form id="wide queryForm">
             <h1 class="heading">Search for issues:</h1>
             <div class="wide list-div" ng-repeat="list in queryCtrl.lists">
-                <a type="button" class="btn btn-default btn-block btn-lg selecting-title" data-toggle="button"
-                   ng-click="list.setSelecting()">
-                    {{list.title}}
-                </a>
-                <div class="selectionSummary lightText" ng-hide="list.selecting || list.getDescription().length < 1"
-                    <p ng-repeat="line in list.getDescription()">{{line}}</p>
-                </div>
-
-                <div class="wide selectingDiv" ng-show="list.selecting">
-                    <div class="searchRow" ng-class="list.selecting ? 'fixedSearch' : ''">
-                        <label>Search: </label>
-                        <input class="darkText" type="text" ng-model="list.searchText">
-                        <button class="darkText" ng-click="list.clearSelections()">Clear Selections</button>
+                <div class="listContents">
+                    <a type="button" class="btn btn-default btn-block btn-lg selecting-title" data-toggle="button"
+                       ng-click="list.setSelecting()">
+                        {{list.title}}
+                    </a>
+                    <div class="selectionSummary lightText" ng-hide="list.selecting || list.getDescription().length < 1"
+                        <p ng-repeat="line in list.getDescription()">{{line}}</p>
                     </div>
-                    <table class="table listTable">
-                        <thead class="selectionHeading">
-                            <th class="headingTitle"></th>
-                            <th class="headingTitle" ng-show="list.hasAllColumn">All Of</td>
-                            <th class="headingTitle">Any Of</td>
-                            <th class="headingTitle">Excluding</td>
-                        </thead>
-                        <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
-                            <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
-                                ng-class-odd="'lightRow'">
-                                <td class="col-xs-8 nameEntry">{{name}}</td>
-                                <td class="col-xs-1" ng-show="list.hasAllColumn">
-                                    <button type="button"
-                                            class="btn selectionButton"
-                                            ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
-                                            ng-click="list.toggleList('All', name)">
-                                    </button>
-                                </td>
-                                <td class="col-xs-1">
-                                    <button type="button"
-                                            class="btn selectionButton"
-                                            ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
-                                            ng-click="list.toggleList('Any', name)">
-                                    </button>
-                                </td>
-                                <td class="col-xs-1">
-                                    <button type="button"
-                                            class="btn selectionButton"
-                                            ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"
-                                            ng-click="list.toggleList('Exclude', name)">
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div class="wide selectingDiv" ng-show="list.selecting">
+                        <div class="searchRow" ng-class="list.selecting ? 'fixedSearch' : ''">
+                            <label>Search: </label>
+                            <input class="darkText" type="text" ng-model="list.searchText">
+                            <button class="darkText" ng-click="list.clearSelections()">Clear Selections</button>
+                        </div>
+                        <table class="table listTable">
+                            <thead class="selectionHeading">
+                                <th class="headingTitle"></th>
+                                <th class="headingTitle" ng-show="list.hasAllColumn">All Of</td>
+                                <th class="headingTitle">Any Of</td>
+                                <th class="headingTitle">Excluding</td>
+                            </thead>
+                            <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
+                                <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
+                                    ng-class-odd="'lightRow'">
+                                    <td class="col-xs-8 nameEntry">{{name}}</td>
+                                    <td class="col-xs-1" ng-show="list.hasAllColumn">
+                                        <button type="button"
+                                                class="btn selectionButton"
+                                                ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
+                                                ng-click="list.toggleList('All', name)">
+                                        </button>
+                                    </td>
+                                    <td class="col-xs-1">
+                                        <button type="button"
+                                                class="btn selectionButton"
+                                                ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
+                                                ng-click="list.toggleList('Any', name)">
+                                        </button>
+                                    </td>
+                                    <td class="col-xs-1">
+                                        <button type="button"
+                                                class="btn selectionButton"
+                                                ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"
+                                                ng-click="list.toggleList('Exclude', name)">
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

@@ -35,6 +35,10 @@ header {
     min-width: 100%;
 }
 
+.listContents {
+    padding: 25px;
+}
+
 .responseDiv {
     background-color: slategray;
     min-width: 100%;
