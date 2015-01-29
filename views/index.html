@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head name="viewport" content="width=device-width, initial-scale=1" lang="en">
     <meta charset="UTF-8">
     <title>X-ReadingList</title>
     <script src="javascripts/angular.min.js"></script>
@@ -107,7 +107,7 @@
             <p class="seriesHeading">{{comic.name}}</p>
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
                 <label ng-show="volume.name">{{volume.name}}</label>
-                <button type="button" class="btn btn-info btn-lrg" data-toggle="button"
+                <button type="button" class="btn btn-info btn-lrg sequence-btn" data-toggle="button"
                         ng-show="volume.issues.length > 1"
                         ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
@@ -122,6 +122,7 @@
                              ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
                              alt="">
                         <div class="infoDiv">
+                            <h3>{{detailsCtrl.issue.number}}</h3>
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
                             <p>{{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}</p>
                         </div>
