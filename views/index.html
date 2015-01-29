@@ -55,7 +55,7 @@
                         </div>
                         <table class="table listTable">
                             <thead class="selectionHeading">
-                                <th class="headingTitle col-xs-6"></th>
+                                <th class="headingTitle col-xs-8"></th>
                                 <th class="headingTitle col-xs-2" ng-show="list.hasAllColumn">All Of</td>
                                 <th class="headingTitle col-xs-2">Any Of</td>
                                 <th class="headingTitle col-xs-2">Excluding</td>
@@ -63,7 +63,7 @@
                             <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
                                 <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
                                     ng-class-odd="'lightRow'">
-                                    <td class="col-xs-6 nameEntry">{{name}}</td>
+                                    <td class="col-xs-8 nameEntry">{{name}}</td>
                                     <td class="col-xs-2" ng-show="list.hasAllColumn">
                                         <button type="button"
                                                 class="btn selectionButton"
