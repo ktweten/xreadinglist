@@ -59,7 +59,7 @@
                             <th class="headingTitle">Any Of</td>
                             <th class="headingTitle">Excluding</td>
                         </thead>
-                        <tbody infinite-scroll="list.increaseLimit()">
+                        <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
                             <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
                                 ng-class-odd="'lightRow'">
                                 <td class="col-xs-8 nameEntry">{{name}}</td>
