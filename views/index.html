@@ -61,7 +61,7 @@
                                 <th class="headingTitle">Excluding</td>
                             </thead>
                             <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
-                                <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
+                                <tr ng-repeat="name in list.displayList | filter:list.searchText"
                                     ng-class-odd="'lightRow'">
                                     <td class="col-xs-8 nameEntry">{{name}}</td>
                                     <td class="col-xs-1" ng-show="list.hasAllColumn">

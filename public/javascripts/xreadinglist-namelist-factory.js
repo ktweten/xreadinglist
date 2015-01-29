@@ -14,7 +14,7 @@ function removeNameFromList(name, list) {
     }
 }
 
-angular.module('xReadingList').factory('NameList', ['$http', function($http) {
+angular.module('xReadingList').factory('NameList', ['$http', '$filter', function($http, $filter) {
     function CreateList(name, allColumn) {
         var self = this;
 
@@ -26,6 +26,7 @@ angular.module('xReadingList').factory('NameList', ['$http', function($http) {
         self.selecting = false;
         self.hasAllColumn = allColumn;
         self.limit = 50;
+        self.displayList = [];
 
         $http.post('/list', { listName: name }).success(function (doc) {
             if (doc && doc.length > 0) {
@@ -37,10 +38,12 @@ angular.module('xReadingList').factory('NameList', ['$http', function($http) {
         this.setSelecting = function() {
             self.selecting = !self.selecting;
             self.limit = 50;
+            self.displayList = $filter('limitTo')(self.names, self.limit);
         };
 
         this.increaseLimit = function() {
             self.limit += 50;
+            self.displayList = $filter('limitTo')(self.names, self.limit);
         };
 
         this.clearSelections = function() {
