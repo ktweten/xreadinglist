@@ -50,6 +50,8 @@ xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection'
             self.collection.addIssues(data);
         });
     };
+
+
 }]);
 
 $(function () {
