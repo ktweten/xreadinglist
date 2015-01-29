@@ -55,30 +55,30 @@
                         </div>
                         <table class="table listTable">
                             <thead class="selectionHeading">
-                                <th class="headingTitle"></th>
-                                <th class="headingTitle" ng-show="list.hasAllColumn">All Of</td>
-                                <th class="headingTitle">Any Of</td>
-                                <th class="headingTitle">Excluding</td>
+                                <th class="headingTitle col-xs-6"></th>
+                                <th class="headingTitle col-xs-2" ng-show="list.hasAllColumn">All Of</td>
+                                <th class="headingTitle col-xs-2">Any Of</td>
+                                <th class="headingTitle col-xs-2">Excluding</td>
                             </thead>
                             <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
                                 <tr ng-repeat="name in list.names | filter:list.searchText | limitTo:list.limit"
                                     ng-class-odd="'lightRow'">
-                                    <td class="col-xs-8 nameEntry">{{name}}</td>
-                                    <td class="col-xs-1" ng-show="list.hasAllColumn">
+                                    <td class="col-xs-6 nameEntry">{{name}}</td>
+                                    <td class="col-xs-2" ng-show="list.hasAllColumn">
                                         <button type="button"
                                                 class="btn selectionButton"
                                                 ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
                                                 ng-click="list.toggleList('All', name)">
                                         </button>
                                     </td>
-                                    <td class="col-xs-1">
+                                    <td class="col-xs-2">
                                         <button type="button"
                                                 class="btn selectionButton"
                                                 ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
                                                 ng-click="list.toggleList('Any', name)">
                                         </button>
                                     </td>
-                                    <td class="col-xs-1">
+                                    <td class="col-xs-2">
                                         <button type="button"
                                                 class="btn selectionButton"
                                                 ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"
