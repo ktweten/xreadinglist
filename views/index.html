@@ -50,7 +50,8 @@
                     <div class="wide selectingDiv" ng-show="list.selecting">
                         <div class="searchRow" ng-class="list.selecting ? 'fixedSearch' : ''">
                             <label>Search: </label>
-                            <input class="darkText" type="text" ng-model="list.searchText">
+                            <input class="darkText" type="text" ng-model="list.searchText"
+                                   ng-change="list.updateDisplayList()">
                             <button class="darkText" ng-click="list.clearSelections()">Clear Selections</button>
                         </div>
                         <table class="table listTable">
@@ -61,13 +62,14 @@
                                 <th class="headingTitle">Excluding</td>
                             </thead>
                             <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
-                                <tr ng-repeat="name in list.displayList | filter:list.searchText"
+                                <tr ng-repeat="name in list.displayList"
                                     ng-class-odd="'lightRow'">
                                     <td class="col-xs-8 nameEntry">{{name}}</td>
                                     <td class="col-xs-1" ng-show="list.hasAllColumn">
                                         <button type="button"
                                                 class="btn selectionButton"
-                                                ng-class="list.allOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
+                                                ng-class="list.allOf.indexOf(name) >= 0 ?
+                                                    'glyphicon glyphicon-ok' : 'btn-default'"
                                                 ng-click="list.toggleList('All', name)">
                                         </button>
                                     </td>

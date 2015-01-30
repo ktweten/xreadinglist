@@ -27,6 +27,7 @@ angular.module('xReadingList').factory('NameList', ['$http', '$filter', function
         self.hasAllColumn = allColumn;
         self.limit = 50;
         self.displayList = [];
+        self.searchText = "";
 
         $http.post('/list', { listName: name }).success(function (doc) {
             if (doc && doc.length > 0) {
@@ -35,15 +36,20 @@ angular.module('xReadingList').factory('NameList', ['$http', '$filter', function
             }
         });
 
+        this.updateDisplayList = function() {
+            self.displayList = self.searchText ? $filter('filter')(self.names, self.searchText) : self.names;
+            self.displayList = $filter('limitTo')(self.displayList, self.limit);
+        };
+
         this.setSelecting = function() {
             self.selecting = !self.selecting;
             self.limit = 50;
-            self.displayList = $filter('limitTo')(self.names, self.limit);
+            self.updateDisplayList();
         };
 
         this.increaseLimit = function() {
             self.limit += 50;
-            self.displayList = $filter('limitTo')(self.names, self.limit);
+            self.updateDisplayList();
         };
 
         this.clearSelections = function() {
