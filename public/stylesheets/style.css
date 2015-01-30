@@ -18,6 +18,10 @@ header {
     white-space: normal;
 }
 
+.resultSeries {
+    padding: 25px;
+}
+
 .listTable {
     background-color: lightgray;
     display: block;
