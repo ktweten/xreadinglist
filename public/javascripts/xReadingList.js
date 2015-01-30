@@ -66,7 +66,7 @@ $(function () {
         });
     });
 
-    $(".selecting-title").click( function() {
+    $(".selecting").click( function() {
         $(this).toggleClass('fixed-title');
         $(this).removeClass('fixed');
     });

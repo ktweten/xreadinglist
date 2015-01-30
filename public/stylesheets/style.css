@@ -1,82 +1,22 @@
-body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 a {
     color: lightblue;
 }
 
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 header {
     background-color: #337ab7;
-    padding: 10px 16px;
+    color: #f5f5f5;
     font-size: 18px;
     line-height: 1.33;
-    color: #f5f5f5;
-}
-
-.sequence-btn {
-    white-space: normal;
-}
-
-.resultSeries {
-    padding: 25px;
-}
-
-.listTable {
-    background-color: lightgray;
-    display: block;
-    table-layout: fixed;
-}
-
-.selectingDiv {
-    width: 100%;
-    background-color: slategray;
-}
-
-.listDiv {
-    background-color: slategray;
-    padding-top: 5px;
-    min-width: 100%;
-}
-
-.listContents {
-    padding: 25px;
-}
-
-.responseDiv {
-    background-color: slategray;
-    min-width: 100%;
-}
-
-.fullButton {
-    min-width: 100%;
-    min-height: 100%;
-    vertical-align: top;
-}
-
-.darkText {
-    color: #222222;
-}
-
-.selectionSummary {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-}
-
-.lightText {
-    color: #f5f5f5;
-}
-
-.selectionHeading {
-    border-bottom: 5px;
-}
-
-.listDiv {
-    padding-bottom: 25px;
+    padding: 10px 16px;
 }
 
 table {
+    background-color: lightgray;
+    display: block;
     font-size: 125%;
     table-layout: fixed;
 }
@@ -85,71 +25,66 @@ th, td {
     text-align: left;
 }
 
-.wide {
-    width: inherit;
-}
-
-.selectingDiv {
-    font-size: 125%;
-    width: inherit;
-}
-
-.searchRow, .nameEntry, .heading {
-    padding-left: 10px;
-}
-
-.selectionButton {
-    min-width: 50px;
-    min-height: 50px;
-}
-
-.searchRow {
-    padding-top: 30px;
-    padding-bottom: 50px;
-    height: 50px;
-    background-color: #23527c;
-    color: #f5f5f5;
-}
-
-.comicDiv {
+.comic {
     background-color: lightgray;
     padding: 75px;
 }
 
-.lightRow {
-    background-color: #A0A0A0;
+.cover-button {
+    color: #f5f5f5;
+    width: 100px;
+    height: 150px;
 }
 
-.darkRow {
+.credits {
+    padding: 10px;
+    background-color: #5e5e5e;
+    color: #f5f5f5;
+}
+
+.dark-row {
     background-color: #606060;
 }
 
-.seriesDiv {
-    border: 1px solid black;
+.dark-text {
+    color: #222222;
 }
 
-.seriesHeading {
-    background-color: #A0A0A0;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 150%;
+.fixed {
+    position: fixed;
+    top: 0;
 }
 
-.foundHeading {
+.fixed-title, .response, .selecting,  {
+    width: 100%;
+}
+
+.found-heading {
     background-color: slategray;
     padding: 10px;
 }
 
+.full-button {
+    min-width: 100%;
+    min-height: 100%;
+    vertical-align: top;
+}
+
 .heading {
     font-weight: bold;
+}
+
+.info {
+    padding: 10px;
+    background-color: #222222;
     color: #f5f5f5;
 }
 
-.issueDiv {
+.issue {
     border: 2px solid black;
 }
 
-.issueCover {
+.issue-cover {
     margin-top: 25px;
     margin-bottom: 25px;
     display: block;
@@ -158,40 +93,91 @@ th, td {
     border: 5px solid white;
 }
 
-.fixed-title {
-    width: 100%;
+.light-text {
+    color: #f5f5f5;
 }
 
-.fixed {
-    position: fixed;
-    top: 0;
+.light-row {
+    background-color: #A0A0A0;
 }
 
-.readerLink {
+.list {
+    background-color: slategray;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    min-width: 100%;
+}
+
+.list-contents {
+    padding: 25px;
+}
+
+.reader-link {
     color: red;
     font-weight: bold;
 }
 
-.coverButton {
-    color: #f5f5f5;
-    width: 100px;
-    height: 150px;
+.response {
+    background-color: slategray;
 }
 
-.infoDiv {
-    padding: 10px;
-    background-color: #222222;
+.result-series {
+    padding: 25px;
+}
+
+.search {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    height: 50px;
+    background-color: #23527c;
     color: #f5f5f5;
 }
 
-.creditsDiv {
-    padding: 10px;
+.search-row, .name-entry, .heading {
+    padding-left: 10px;
+}
+
+.selecting {
+    font-size: 125%;
+    background-color: slategray;
+}
+
+.selection-button {
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.selection-heading {
+    border-bottom: 15px;
+    border-top: 15px;
+}
+
+.selection-summary {
+    padding: 20px;
     background-color: #5e5e5e;
-    color: #f5f5f5;
 }
 
-.synopsisDiv {
+.sequence-btn {
+    white-space: normal;
+}
+
+.series {
+    border: 1px solid black;
+}
+
+.series-heading {
+    background-color: #A0A0A0;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.synopsis {
     background-color: #f5f5f5;
     color: #0f0f0f;
     padding: 25px;
+}
+
+.wide {
+    width: inherit;
 }

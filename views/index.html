@@ -34,40 +34,40 @@
     </p>
 </header>
 <body ng-app="xReadingList"  ng-controller="QueryController as queryCtrl">
-    <div class="wide queryDiv listDiv" ng-show="queryCtrl.showQuery">
-        <form id="wide queryForm">
+    <div class="wide list" ng-show="queryCtrl.showQuery">
+        <form id="wide">
             <h1 class="heading">Search for issues:</h1>
-            <div class="wide list-div" ng-repeat="list in queryCtrl.lists">
-                <div class="listContents">
-                    <a type="button" class="btn btn-default btn-block btn-lg selecting-title" data-toggle="button"
+            <div class="wide list" ng-repeat="list in queryCtrl.lists">
+                <div class="list-contents">
+                    <a type="button" class="btn btn-default btn-block btn-lg selecting" data-toggle="button"
                        ng-click="list.setSelecting()">
                         {{list.title}}
                     </a>
-                    <div class="selectionSummary lightText" ng-hide="list.selecting || list.getDescription().length < 1"
+                    <div class="selection-summary light-text" ng-hide="list.selecting || list.getDescription().length < 1"
                         <p ng-repeat="line in list.getDescription()">{{line}}</p>
                     </div>
 
-                    <div class="wide selectingDiv" ng-show="list.selecting">
-                        <div class="searchRow" ng-class="list.selecting ? 'fixedSearch' : ''">
+                    <div class="wide selecting" ng-show="list.selecting">
+                        <div class="search" ng-class="list.selecting ? 'fixedSearch' : ''">
                             <label>Search: </label>
-                            <input class="darkText" type="text" ng-model="list.searchText"
+                            <input class="dark-text" type="text" ng-model="list.searchText"
                                    ng-change="list.updateDisplayList()">
-                            <button class="darkText" ng-click="list.clearSelections()">Clear Selections</button>
+                            <button class="dark-text" ng-click="list.clearSelections()">Clear Selections</button>
                         </div>
-                        <table class="table listTable">
-                            <thead class="selectionHeading">
-                                <th class="headingTitle"></th>
-                                <th class="headingTitle" ng-show="list.hasAllColumn">All Of</td>
-                                <th class="headingTitle">Any Of</td>
-                                <th class="headingTitle">Excluding</td>
+                        <table>
+                            <thead class="selection-heading dark-text">
+                                <th></th>
+                                <th ng-show="list.hasAllColumn">All Of</td>
+                                <th>Any Of</td>
+                                <th>Excluding</td>
                             </thead>
                             <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
                                 <tr ng-repeat="name in list.displayList"
-                                    ng-class-odd="'lightRow'">
-                                    <td class="col-xs-8 nameEntry">{{name}}</td>
+                                    ng-class-odd="'light-row'">
+                                    <td class="col-xs-8 name-entry">{{name}}</td>
                                     <td class="col-xs-1" ng-show="list.hasAllColumn">
                                         <button type="button"
-                                                class="btn selectionButton"
+                                                class="btn selection-button"
                                                 ng-class="list.allOf.indexOf(name) >= 0 ?
                                                     'glyphicon glyphicon-ok' : 'btn-default'"
                                                 ng-click="list.toggleList('All', name)">
@@ -75,14 +75,14 @@
                                     </td>
                                     <td class="col-xs-1">
                                         <button type="button"
-                                                class="btn selectionButton"
+                                                class="btn selection-button"
                                                 ng-class="list.anyOf.indexOf(name) >= 0 ? 'glyphicon glyphicon-ok' : 'btn-default'"
                                                 ng-click="list.toggleList('Any', name)">
                                         </button>
                                     </td>
                                     <td class="col-xs-1">
                                         <button type="button"
-                                                class="btn selectionButton"
+                                                class="btn selection-button"
                                                 ng-class="list.excluded.indexOf(name) >= 0 ? 'glyphicon glyphicon-remove' : 'btn-default'"
                                                 ng-click="list.toggleList('Exclude', name)">
                                         </button>
@@ -107,34 +107,34 @@
         </form>
     </div>
 
-    <div class="resultsDiv listDiv" ng-hide="queryCtrl.showQuery">
+    <div class="results list" ng-hide="queryCtrl.showQuery">
         <h1 class="heading">Found: {{queryCtrl.issues}}</h1>
-        <div class="comicDiv" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'">
-            <p class="seriesHeading">{{comic.name}}</p>
+        <div class="comic" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'">
+            <p class="series-heading">{{comic.name}}</p>
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
-                <div class="resultSeries">
+                <div class="result-series">
                     <label ng-show="volume.name">{{volume.name}}</label>
                     <button type="button" class="btn btn-info btn-lg sequence-btn" data-toggle="button"
                             ng-show="volume.issues.length > 1"
                             ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 </div>
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
-                    <button class="btn btn-default coverButton"
+                    <button class="btn btn-default cover-button"
                             ng-repeat="issue in volume.issues"
                             ng-click="detailsCtrl.getDetails(issue)"
                             ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }">
                         {{issue.number}}
                     </button>
-                    <div class="issueDiv" ng-show="detailsCtrl.showDetails">
-                        <img class="issueCover"
+                    <div class="issue" ng-show="detailsCtrl.showDetails">
+                        <img class="issue-cover"
                              ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
                              alt="">
-                        <div class="infoDiv">
+                        <div class="info">
                             <h3>{{detailsCtrl.issue.number}}</h3>
                             <p>{{detailsCtrl.issue.titles.join(", ")}}</p>
                             <p>{{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}</p>
                         </div>
-                        <div class="creditsDiv">
+                        <div class="credits">
                             <p>Script: {{detailsCtrl.issue.script.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.script.join(", ")}}</p>
                             <p>Pencils: {{detailsCtrl.issue.pencils.length === 0 ? 'Not available' :
@@ -144,14 +144,14 @@
                             <p>Colours: {{detailsCtrl.issue.colours.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.colours.join(", ")}}</p>
                         </div>
-                        <div class="synopsisDiv">
+                        <div class="synopsis">
                             <p ng-repeat="line in detailsCtrl.issue.synopsis">
                                 {{line === "" ? 'No synopsis available' : line}}
                             </p>
                             <p>Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' :
                                 detailsCtrl.issue.characters.join(", ")}}</p>
                             <span ng-repeat="url in detailsCtrl.urls">
-                                <a class="readerLink" href="{{url.url}}" target="blank">{{url.type}}</a></br>
+                                <a class="reader-link" href="{{url.url}}" target="blank">{{url.type}}</a></br>
                             </span>
                         </div>
                     </div>
