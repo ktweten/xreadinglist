@@ -11,26 +11,6 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
     self.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     self.extension = 'jpg';
 
-    self.setUrls = function(urls) {
-        var labelMap = {
-                reader: 'Read on Marvel Unlimited',
-                purchase: 'Buy Digital Copy ',
-                details: 'Details on Marvel'
-            },
-            mappedUrls = [],
-            mappedLabel,
-            index;
-
-        for (index = 0; index < urls.length; index += 1) {
-            mappedLabel = labelMap[urls[index].type] || "";
-            if (mappedLabel) {
-                mappedUrls.push({ type: mappedLabel, url: urls[index].url });
-            }
-        }
-
-        self.urls = mappedUrls.length > 0 ? mappedUrls : [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
-    };
-
     self.getDetails = function(issue) {
 
         if (issue._id !== self.lastId) {
