@@ -34,8 +34,8 @@
     </p>
 </header>
 <body ng-app="xReadingList"  ng-controller="QueryController as queryCtrl">
-    <div class="wide list" ng-show="queryCtrl.showQuery">
-        <form id="wide">
+    <div id="query" class="wide list" ng-show="queryCtrl.showQuery">
+        <form class="wide">
             <h1 class="heading">Search for issues:</h1>
             <div class="wide list" ng-repeat="list in queryCtrl.lists">
                 <div class="list-contents">
@@ -107,7 +107,7 @@
         </form>
     </div>
 
-    <div class="results list" ng-hide="queryCtrl.showQuery">
+    <div id="results-list" ng-hide="queryCtrl.showQuery">
         <h1 class="heading">Found: {{queryCtrl.issues}}</h1>
         <div class="comic" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'">
             <p class="series-heading">{{comic.name}}</p>

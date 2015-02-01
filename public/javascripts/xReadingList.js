@@ -21,6 +21,7 @@ xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection'
 
     self.hideResults = function() {
         self.showQuery = true;
+        $location.hash("query");
     };
 
     self.query = function() {
@@ -48,6 +49,7 @@ xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection'
             self.showQuery = false;
             self.collection.clear();
             self.collection.addIssues(data);
+            $location.hash("results-list");
         });
     };
 }]);
