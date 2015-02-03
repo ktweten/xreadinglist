@@ -56,8 +56,10 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 issue,
                 offset;
 
-            if (res.data && res.data.results) {
+            //if (res.data && res.data.results) {
 
+            offset = res.offset + res.count;
+            if (offset < res.total) {
                 for (i = 0; i < res.data.results.length; i += 1) {
                     issue = res.data.results[i];
 
@@ -72,10 +74,10 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 }
             }
 
-            offset = res.offset + res.count;
-            if (offset < res.total) {
-                getMarvelVolumeData(title, year, offset, vol);
-            }
+            //offset = res.offset + res.count;
+            //if (offset < res.total) {
+            //    getMarvelVolumeData(title, year, offset, vol);
+            //}
         }
     }
 
