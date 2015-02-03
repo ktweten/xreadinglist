@@ -83,6 +83,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         var link = 'http://gateway.marvel.com:80/v1/public/comics?title=' + series +
             '&startYear=' + startYear +
             '&offset=' + offset +
+            '&limit=' + 100 +
             '&noVariants=true' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4';
 

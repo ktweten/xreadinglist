@@ -3,8 +3,8 @@
  */
 var xReadingListApp = angular.module('xReadingList', ['infinite-scroll']);
 
-xReadingListApp.controller('QueryController', ['$http', '$location', 'NameList', 'Collection',
-    function($http, $location, NameList, Collection) {
+xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection',
+    function($http, NameList, Collection) {
     var self = this;
     self.issues = 0;
     self.startYear = 1963;
