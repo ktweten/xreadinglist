@@ -59,11 +59,12 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                     issue = res.data.results[i];
 
                     for (j = 0; j < foundVolume.length; j += 1) {
-                        if (foundVolume[j].number === issue.issueNumber.toString()) {
-                            foundVolume[j].coverRoot = issue.thumbnail.path;
-                            foundVolume[j].extension = issue.thumbnail.extension;
-                            foundVolume[j].urls = mapUrls(issue.urls);
-                        }
+                        foundVolume[j].coverRoot = foundVolume[j].concat(" " + issue.issueNumber);
+                        //if (foundVolume[j].number === issue.issueNumber.toString()) {
+                        //    foundVolume[j].coverRoot = issue.thumbnail.path;
+                        //    foundVolume[j].extension = issue.thumbnail.extension;
+                        //    foundVolume[j].urls = mapUrls(issue.urls);
+                        //}
                     }
                 }
             }
