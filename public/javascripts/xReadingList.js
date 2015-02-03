@@ -57,22 +57,22 @@ xReadingListApp.controller('QueryController', ['$http', '$location', '$anchorScr
     };
 }]);
 
-//$(function () {
-//    $(window).scroll(function () {
-//        var windowTop = $(window).scrollTop();
-//
-//        $('.fixed-title').each(function() {
-//            if (windowTop > $(this).parent().offset().top) {
-//                $('.fixed-title').removeClass('fixed');
-//                $(this).addClass('fixed');
-//            } else {
-//                $(this).removeClass('fixed');
-//            }
-//        });
-//    });
-//
-//    $(".selecting").click( function() {
-//        $(this).toggleClass('fixed-title');
-//        $(this).removeClass('fixed');
-//    });
-//});
+$(function () {
+    $(window).scroll(function () {
+        var windowTop = $(window).scrollTop();
+
+        $('.fixed-title').each(function() {
+            if (windowTop > $(this).parent().offset().top) {
+                $('.fixed-title').removeClass('fixed');
+                $(this).addClass('fixed');
+            } else {
+                $(this).removeClass('fixed');
+            }
+        });
+    });
+
+    $(".selecting").click( function() {
+        $(this).toggleClass('fixed-title');
+        $(this).removeClass('fixed');
+    });
+});

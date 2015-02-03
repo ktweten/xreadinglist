@@ -46,7 +46,7 @@
                         <p ng-repeat="line in list.getDescription()">{{line}}</p>
                     </div>
 
-                    <div class="wide selecting" ng-show="list.selecting">
+                    <div class="wide" ng-show="list.selecting">
                         <div class="search">
                             <label class="search-label">Search: </label>
                             <input class="dark-text" type="text" ng-model="list.searchText"
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div id="dateDiv" class="selectingDiv">
+            <div id="dateDiv">
                 <div class="selectionSummary">
                     <label>From: </label>
                     <input class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.startYear">
