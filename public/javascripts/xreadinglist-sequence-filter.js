@@ -25,6 +25,7 @@ angular.module('xReadingList').filter('sequence', function() {
         if (numbers.length === 1) {
             sequenceString = numbers[0].number;
         } else if (numbers.length > 1) {
+
             startNumber = endNumber = numbers[0].number;
 
             for (index = 1; index < numbers.length; index += 1) {

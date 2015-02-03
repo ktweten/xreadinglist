@@ -82,6 +82,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 if (!issue.number) {
                     issue.number = 'Oneshot';
                 }
+
                 for (issueIndex = 0; issueIndex < issueList.length; issueIndex += 1) {
                     if (issueList[issueIndex].number === issue.number) {
                         break;

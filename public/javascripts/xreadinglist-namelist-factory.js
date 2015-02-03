@@ -96,6 +96,7 @@ angular.module('xReadingList').factory('NameList', ['$http', '$filter', function
                 removeNameFromList(name, addTo);
             } else {
                 addNameToList(name, addTo);
+
                 for (i = 0; i < removeFrom.length; i += 1) {
                     removeNameFromList(name, removeFrom[i]);
                 }

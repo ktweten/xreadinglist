@@ -46,6 +46,7 @@ xReadingListApp.controller('QueryController', ['$http', '$location', '$anchorScr
 
             startYear: Math.min(self.startYear),
             endYear: Math.max(self.endYear)
+
         }).success(function(data, status, headers, config) {
             self.issues = data.length;
             self.showQuery = false;

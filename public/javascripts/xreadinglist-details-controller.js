@@ -23,6 +23,7 @@ angular.module('xReadingList').controller('DetailsController', ['$http', '$locat
             self.extension = issue.extension;
             self.urls = issue.urls;
 
+            
             $http.post('/details', {
                 id: issue._id
             }).success(function(data, status, headers, config) {
