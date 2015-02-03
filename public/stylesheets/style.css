@@ -120,6 +120,11 @@ th, td {
     padding: 25px;
 }
 
+.name-entry {
+    font-size: 200%;
+    font-weight: bold;
+}
+
 .reader-link {
     color: red;
     font-weight: bold;
@@ -158,6 +163,7 @@ th, td {
     min-width: 70px;
     min-height: 70px;
     font-size: 200%;
+    margin: 15px;
 }
 
 .selection-heading {
