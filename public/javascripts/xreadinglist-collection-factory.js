@@ -88,7 +88,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 issue.extension = 'jpg';
                 issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
 
-                MarvelService.getMarvelData(issue);
+                self.summ = MarvelService.getMarvelData(issue);
 
                 if (issueIndex === issueList.length) {
                     issueList.push(issue);
