@@ -73,9 +73,9 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             }
 
             offset = res.data.offset + res.data.count;
-            if (offset < res.data.total) {
-                getMarvelVolumeData(title, year, offset, vol);
-            }
+            //if (offset < res.data.total) {
+            //    getMarvelVolumeData(title, year, offset, vol);
+            //}
         }
     }
 
