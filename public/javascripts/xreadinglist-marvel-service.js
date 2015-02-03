@@ -57,6 +57,12 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
 
             for (j = 0; j < foundVolume.length; j += 1) {
                 foundVolume[j].coverRoot = "";
+                if (res.data) {
+                    foundVolume[j].coverRoot = "res.data";
+                }
+                if (res.data && res.data.results) {
+                    foundVolume[j].coverRoot = "res.data && res.data.results " + res.data.results.length;
+                }
             }
 
             //if (res.data && res.data.results) {
