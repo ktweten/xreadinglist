@@ -25,6 +25,15 @@ th, td {
     text-align: left;
 }
 
+.btn-right {
+    float: right;
+    margin-right: 20px;
+}
+
+.btn-xl {
+    font-size: xx-large;
+}
+
 .comic {
     background-color: lightgray;
     padding: 75px;
@@ -125,11 +134,16 @@ th, td {
 }
 
 .search {
+    padding-left: 30px;
     padding-top: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
     height: 50px;
     background-color: #23527c;
     color: #f5f5f5;
+}
+
+.search-label {
+    font-size: 200%;
 }
 
 .search-row, .name-entry, .heading {
@@ -137,13 +151,13 @@ th, td {
 }
 
 .selecting {
-    font-size: 125%;
     background-color: slategray;
 }
 
 .selection-button {
-    min-width: 50px;
-    min-height: 50px;
+    min-width: 70px;
+    min-height: 70px;
+    font-size: 200%;
 }
 
 .selection-heading {

@@ -39,7 +39,7 @@
             <h1 class="heading">Search for issues:</h1>
             <div class="wide list" ng-repeat="list in queryCtrl.lists">
                 <div class="list-contents">
-                    <a type="button" class="btn btn-default btn-block btn-lg selecting" data-toggle="button"
+                    <a type="button" class="btn btn-default btn-block btn-lg selecting btn-xl" data-toggle="button"
                        ng-click="list.setSelecting()">
                         {{list.title}}
                     </a>
@@ -49,10 +49,10 @@
 
                     <div class="wide selecting" ng-show="list.selecting">
                         <div class="search">
-                            <label>Search: </label>
+                            <label class="search-label">Search: </label>
                             <input class="dark-text" type="text" ng-model="list.searchText"
                                    ng-change="list.updateDisplayList()">
-                            <button class="dark-text" ng-click="list.clearSelections()">Clear Selections</button>
+                            <button class="dark-text btn btn-default btn-xl btn-right" ng-click="list.clearSelections()">Clear Selections</button>
                         </div>
                         <table>
                             <thead class="selection-heading dark-text">
@@ -64,7 +64,7 @@
                             <tbody infinite-scroll="list.increaseLimit()">
                                 <tr ng-repeat="name in list.displayList"
                                     ng-class-odd="'light-row'">
-                                    <td class="col-xs-8 name-entry">{{name}}</td>
+                                    <td class="col-xs-10 name-entry">{{name}}</td>
                                     <td class="col-xs-1" ng-show="list.hasAllColumn">
                                         <button type="button"
                                                 class="btn selection-button"
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <button  type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.query()">Search</button>
+            <button  type="button" class="btn btn-primary btn-block btn-xl" ng-click="queryCtrl.query()">Search</button>
         </form>
     </div>
 
@@ -114,7 +114,7 @@
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
                 <div class="result-series">
                     <label ng-show="volume.name">{{volume.name}}</label>
-                    <button type="button" class="btn btn-info btn-lg sequence-btn" data-toggle="button"
+                    <button type="button" class="btn btn-info btn-xl sequence-btn" data-toggle="button"
                             ng-show="volume.issues.length > 1"
                             ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 </div>
@@ -158,7 +158,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.hideResults()">New Search</button>
+        <button type="button" class="btn btn-primary btn-block btn-xl" ng-click="queryCtrl.hideResults()">New Search</button>
     </div>
 </body>
 </html>
