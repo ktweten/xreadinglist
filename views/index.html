@@ -38,7 +38,7 @@
             <h1 class="heading">Search for issues:</h1>
             <div class="wide list" ng-repeat="list in queryCtrl.lists">
                 <div class="list-contents">
-                    <a type="button" class="btn btn-default btn-block btn-lg selecting btn-xl" data-toggle="button"
+                    <a type="button" class="btn btn-default btn-block btn-lg selecting" data-toggle="button"
                        ng-click="list.setSelecting()">
                         {{list.title}}
                     </a>
@@ -94,8 +94,8 @@
                 </div>
             </div>
 
-            <div id="dateDiv">
-                <div class="selectionSummary">
+            <div id="date">
+                <div class="selection-summary">
                     <label>From: </label>
                     <input class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.startYear">
                     <label>To: </label>
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <button  type="button" class="btn btn-primary btn-block btn-xl" ng-click="queryCtrl.query()">Search</button>
+            <button  type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.query()">Search</button>
         </form>
     </div>
 
@@ -114,17 +114,19 @@
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
                 <div class="result-series">
                     <label ng-show="volume.name">{{volume.name}}</label>
-                    <button type="button" class="btn btn-info btn-xl sequence-btn" data-toggle="button"
+                    <button type="button" class="btn btn-info btn-lg sequence-btn" data-toggle="button"
                             ng-show="volume.issues.length > 1"
                             ng-click="volume.expand = !volume.expand">{{volume.issues | sequence}}</button>
                 </div>
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
-                    <button class="btn btn-default cover-button"
-                            ng-repeat="issue in volume.issues"
-                            ng-click="detailsCtrl.getDetails(issue, volume.name)"
-                            ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }">
-                        {{issue.number}}
-                    </button>
+                    <div class="covers">
+                        <button class="btn btn-default cover-button"
+                                ng-repeat="issue in volume.issues"
+                                ng-click="detailsCtrl.getDetails(issue, volume.name)"
+                                ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }">
+                            {{issue.number}}
+                        </button>
+                    </div>
                     <div id="{{volume.name}}-details" class="issue" ng-show="detailsCtrl.showDetails">
                         <img class="issue-cover"
                              ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
@@ -158,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-block btn-xl" ng-click="queryCtrl.hideResults()">New Search</button>
+        <button type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.hideResults()">New Search</button>
     </div>
 </body>
 </html>
