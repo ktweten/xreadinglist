@@ -100,16 +100,20 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4',
             volumeData = getVolumeData(issue.series, issue.volume);
 
-        if (volumeData[issue.number]) {
-            issue.coverRoot = volumeData[issue.number].coverRoot;
-            issue.extension = volumeData[issue.number].extension;
-            issue.urls = volumeData[issue.number].urls;
-        } else {
+        if (!volumeData[issue.number]) {
+            volumeData[issue.number] = {
+                coverRoot: "",
+                extension: "",
+                urls: mapUrls([])
+            };
+        }
 
-            issue.coverRoot = "";
-            issue.extension = "";
+        issue.coverRoot = volumeData[issue.number].coverRoot;
+        issue.extension = volumeData[issue.number].extension;
+        issue.urls = volumeData[issue.number].urls;
 
-            $http.get(link, { cache: true }).success(makeSetDataCallback(volumeData));
+        if (!volumeData[issue.number]) {
+             $http.get(link, { cache: true }).success(makeSetDataCallback(volumeData));
         }
         //$http.get(link, { cache: true }).success(makeIssueCallback(issue));
     }
