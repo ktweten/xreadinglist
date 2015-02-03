@@ -86,10 +86,11 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             '&noVariants=true' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4';
 
-        $http.get(link, { cache: true }).success(makeIssueCallback(volume));
+        $http.get(link, { cache: true }).success(makeVolumeCallback(volume));
     }
 
     return {
+        getMarvelData: getMarvelData,
         getMarvelVolumeData: getMarvelVolumeData
     }
 }]);

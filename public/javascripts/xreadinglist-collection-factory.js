@@ -86,7 +86,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 }
 
                 if (issueIndex === issueList.length) {
-                    self.debug = self.debug.append("Q: " + issue.number + " ");
+                    self.debug = self.debug.concat("Q: " + issue.number + " ");
                     issue.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
                     issue.extension = 'jpg';
                     issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
@@ -96,7 +96,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     issueList.push(issue);
                     issueList.sort(issueSort);
                 } else {
-                    self.debug = self.debug.append("F: " + issue.number + " ");
+                    self.debug = self.debug.concat("F: " + issue.number + " ");
                     issue.coverRoot = issueList[issueIndex].coverRoot;
                     issue.extension = issueList[issueIndex].extension;
                     issue.urls = issueList[issueIndex].urls;
