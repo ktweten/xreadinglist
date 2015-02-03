@@ -105,6 +105,10 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             issue.extension = volumeData[issue.number].extension;
             issue.urls = volumeData[issue.number].urls;
         } else {
+
+            issue.coverRoot = "";
+            issue.extension = "";
+
             $http.get(link, { cache: true }).success(makeSetDataCallback(volumeData));
         }
         //$http.get(link, { cache: true }).success(makeIssueCallback(issue));
