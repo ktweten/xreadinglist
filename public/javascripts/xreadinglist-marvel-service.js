@@ -90,7 +90,6 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
     }
 
     return {
-        getMarvelData: getMarvelData,
         getMarvelVolumeData: getMarvelVolumeData
     }
 }]);

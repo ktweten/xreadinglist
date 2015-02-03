@@ -18,7 +18,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
 
         self.comics = [];
 
-        self.debug = "";
+        self.debug = "?";
 
         self.clear = function() {
             self.comics = [];
