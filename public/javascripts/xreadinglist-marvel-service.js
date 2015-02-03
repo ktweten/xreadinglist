@@ -45,16 +45,17 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         $http.get(link, { cache: true }).success(makeIssueCallback(issue));
     }
 
-    function makeVolumeCallback(series, startYear, volume) {
+    function makeVolumeCallback(series, startYear, volume, offset) {
         var title = series,
             year = startYear,
-            vol = volume;
+            vol = volume,
+            skip = offset + 100;
 
         return function(res, status, headers, config) {
             var i,
                 j,
                 issue,
-                offset;
+                total;
 
             if (res.data && res.data.results) {
 
@@ -72,10 +73,10 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 }
             }
 
-            offset = res.data.offset + res.data.count;
-            //if (offset < res.data.total) {
-            //    getMarvelVolumeData(title, year, offset, vol);
-            //}
+            total = res.data.offset + res.data.count;
+            if (total < res.data.total && res.data.limit === res.data.count) {
+                getMarvelVolumeData(title, year, skip, vol);
+            }
         }
     }
 
@@ -87,7 +88,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             '&noVariants=true' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4';
 
-        $http.get(link, { cache: true }).success(makeVolumeCallback(series, startYear, volume));
+        $http.get(link, { cache: true }).success(makeVolumeCallback(series, startYear, volume, offset));
     }
 
     return {
