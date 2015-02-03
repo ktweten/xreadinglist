@@ -29,7 +29,7 @@ angular.module('xReadingList').factory('NameList', ['$http', '$filter', function
         self.displayList = [];
         self.searchText = "";
 
-        $http.post('/list', { listName: name }).success(function (doc) {
+        $http.post('/list', { listName: name, cache: true }).success(function (doc) {
             if (doc && doc.length > 0) {
                 self.names = doc[0].names;
                 self.names.sort();
