@@ -77,7 +77,6 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                         foundVolume[j].urls = mapUrls(issue.urls);
                         break;
                     }
-                }
             }
         }
     }
