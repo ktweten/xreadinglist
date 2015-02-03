@@ -12,10 +12,10 @@ angular.module('xReadingList').controller('DetailsController', ['$http', '$locat
     self.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
     self.extension = 'jpg';
 
-    self.getDetails = function(issue) {
+    self.getDetails = function(issue, name) {
 
         if (issue._id !== self.lastId) {
-            $location.hash("details");
+            $location.hash(name + "-details");
             $anchorScroll();
             self.showDetails = true;
             self.lastId = issue._id;

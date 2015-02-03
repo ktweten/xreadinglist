@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="wide selecting" ng-show="list.selecting">
-                        <div class="search" ng-class="list.selecting ? 'fixedSearch' : ''">
+                        <div class="search">
                             <label>Search: </label>
                             <input class="dark-text" type="text" ng-model="list.searchText"
                                    ng-change="list.updateDisplayList()">
@@ -61,7 +61,7 @@
                                 <th>Any Of</td>
                                 <th>Excluding</td>
                             </thead>
-                            <tbody infinite-scroll="list.increaseLimit()" infinite-scroll-distance="2">
+                            <tbody infinite-scroll="list.increaseLimit()">
                                 <tr ng-repeat="name in list.displayList"
                                     ng-class-odd="'light-row'">
                                     <td class="col-xs-8 name-entry">{{name}}</td>
@@ -121,11 +121,11 @@
                 <div ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl">
                     <button class="btn btn-default cover-button"
                             ng-repeat="issue in volume.issues"
-                            ng-click="detailsCtrl.getDetails(issue)"
+                            ng-click="detailsCtrl.getDetails(issue, volume.name)"
                             ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }">
                         {{issue.number}}
                     </button>
-                    <div id="details" class="issue" ng-show="detailsCtrl.showDetails">
+                    <div id="{{volume.name}}-details" class="issue" ng-show="detailsCtrl.showDetails">
                         <img class="issue-cover"
                              ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
                              alt="">
@@ -158,7 +158,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg" ng-click="queryCtrl.hideResults()">New Search</button>
+        <button type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.hideResults()">New Search</button>
     </div>
 </body>
 </html>
