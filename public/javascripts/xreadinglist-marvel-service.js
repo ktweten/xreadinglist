@@ -45,13 +45,16 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         $http.get(link, { cache: true }).success(makeIssueCallback(issue));
     }
 
-    function makeVolumeCallback(volume) {
-        var foundVolume = volume;
+    function makeVolumeCallback(series, startYear, volume) {
+        var title = series,
+            year = startYear,
+            vol = volume;
 
         return function(res, status, headers, config) {
             var i,
                 j,
-                issue;
+                issue,
+                offset;
 
             if (res.data && res.data.results) {
 
@@ -59,36 +62,31 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                     issue = res.data.results[i];
 
                     for (j = 0; j < foundVolume.length; j += 1) {
-                        //foundVolume[j].coverRoot = foundVolume[j].concat(" " + issue.issueNumber);
-                        if (foundVolume[j].number === issue.issueNumber.toString()) {
-                            foundVolume[j].coverRoot = issue.thumbnail.path;
-                            foundVolume[j].extension = issue.thumbnail.extension;
-                            foundVolume[j].urls = mapUrls(issue.urls);
+                        if (vol[j].number === issue.issueNumber.toString()) {
+                            vol[j].coverRoot = issue.thumbnail.path;
+                            vol[j].extension = issue.thumbnail.extension;
+                            vol[j].urls = mapUrls(issue.urls);
+                            break;
                         }
                     }
                 }
             }
+
+            offset = res.offset + res.count;
+            if (offset < res.total) {
+                getMarvelVolumeData(series, year, offset, vol);
+            }
         }
     }
 
-    function makeErrorCallback(volume) {
-        var issues = volume;
-
-        return function (res, status, headers, config) {
-            for (var j = 0; j < issues.length; j += 1) {
-                issues[j].coverRoot = "";
-            }
-        };
-    }
-
-    function getMarvelVolumeData(series, startYear, volume) {
+    function getMarvelVolumeData(series, startYear, offset, volume) {
         var link = 'http://gateway.marvel.com:80/v1/public/comics?title=' + series +
             '&startYear=' + startYear +
+            '&offset=' + offset +
             '&noVariants=true' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4';
 
-        $http.get(link, { cache: true }).success(makeVolumeCallback(volume))
-            .error(makeErrorCallback(volume));
+        $http.get(link, { cache: true }).success(makeVolumeCallback(series, startYear, volume));
     }
 
     return {
