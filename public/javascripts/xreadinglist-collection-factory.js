@@ -69,7 +69,8 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 dataIndex,
                 issueList,
                 series,
-                issue;
+                issue,
+                fetchingSeries = [];
 
             self.debug = "";
 
@@ -92,7 +93,10 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     issue.extension = 'jpg';
                     issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
 
-                    MarvelService.getMarvelVolumeData(issue.series, issue.volume, 0, issueList);
+                    if (fetchingSeries.indexOf(issue.series) < 0) {
+                        fetchingSeries.push(issue.series);
+                        MarvelService.getMarvelVolumeData(issue.series, issue.volume, 0, issueList);
+                    }
 
                     issueList.push(issue);
                     issueList.sort(issueSort);
