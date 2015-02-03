@@ -116,7 +116,8 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
 
 
         for (iss in volumeData) {
-            summary = summary.concat(iss);
+            summary = summary.concat(iss + " ");
+            summary = summary.concat(volumeData[iss].urls.length);
         }
         return summary;
     }
