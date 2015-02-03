@@ -71,6 +71,8 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 series,
                 issue;
 
+            self.debug = "";
+
             for (dataIndex = 0; dataIndex < data.length; dataIndex += 1) {
                 issue = data[dataIndex];
                 series = self.getSeries(issue.series, self.comics);

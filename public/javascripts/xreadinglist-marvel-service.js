@@ -71,13 +71,19 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                             break;
                         }
                     }
-
-                    if (!found) {
-
-                    }
                 }
             }
         }
+    }
+
+    function makeErrorCallback(volume) {
+        var issues = volume;
+
+        return function (res, status, headers, config) {
+            for (var j = 0; j < issues.length; j += 1) {
+                issues[j].coverRoot = "";
+            }
+        };
     }
 
     function getMarvelVolumeData(series, startYear, volume) {
@@ -86,7 +92,8 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             '&noVariants=true' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4';
 
-        $http.get(link, { cache: true }).success(makeVolumeCallback(volume));
+        $http.get(link, { cache: true }).success(makeVolumeCallback(volume))
+            .error(makeErrorCallback(volume));
     }
 
     return {
