@@ -142,7 +142,7 @@ th, td {
 }
 
 .search-row, .name-entry, .heading {
-    /*padding-left: 10px;*/
+    padding-left: 5%;
 }
 
 .selecting {
