@@ -109,7 +109,7 @@
 
     <div id="results-list" ng-hide="queryCtrl.showQuery">
         <h1 class="heading">Found: {{queryCtrl.issues}}</h1>
-        <h2>Summ: {{queryCtrl.collection.debug.stringVersion}}</h2>
+        <h2>Summ: {{queryCtrl.collection.debug}}</h2>
         <div class="comic" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'">
             <p class="series-heading">{{comic.name}}</p>
             <div ng-repeat="volume in comic.volumes | orderBy:'name'">
