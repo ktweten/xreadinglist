@@ -18,8 +18,6 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
 
         self.comics = [];
 
-        self.debug = {};
-
         self.clear = function() {
             self.comics = [];
         };
@@ -79,22 +77,27 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 if (!issue.number) {
                     issue.number = 'Oneshot';
                 }
-
                 for (issueIndex = 0; issueIndex < issueList.length; issueIndex += 1) {
                     if (issueList[issueIndex].number === issue.number) {
                         break;
                     }
                 }
 
-                issue.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
-                issue.extension = 'jpg';
-                issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
-
-                MarvelService.getMarvelData(issue, self.debug);
-
                 if (issueIndex === issueList.length) {
+                    issue.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+                    issue.extension = 'jpg';
+                    issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
+
+                    MarvelService.getMarvelVolumeData(issue.series, issue.volume, issueList);
+
                     issueList.push(issue);
                     issueList.sort(issueSort);
+                } else {
+                    issue.coverRoot = issueList[issueIndex].coverRoot;
+                    issue.extension = issueList[issueIndex].extension;
+                    issue.urls = issueList[issueIndex].urls;
+
+                    issueList[issueIndex] = issue;
                 }
             }
         }
