@@ -16,6 +16,8 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
     function CreateCollection() {
         var self = this;
 
+        self.debug = "";
+
         self.comics = [];
 
         self.clear = function() {
@@ -88,7 +90,9 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 issue.extension = 'jpg';
                 issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
 
-                self.summ = MarvelService.getMarvelData(issue);
+                self.debug = MarvelService.getSummary();
+
+                MarvelService.getMarvelData(issue);
 
                 if (issueIndex === issueList.length) {
                     issueList.push(issue);

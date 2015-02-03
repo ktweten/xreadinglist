@@ -22,7 +22,8 @@ function mapUrls(urls) {
 }
 
 angular.module('xReadingList').service('MarvelService', ['$http', function($http) {
-    var data = {};
+    var data = {},
+        found = "";
 
     function getVolumeData(series, startYear) {
         var seriesEntry;
@@ -49,6 +50,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 issueNumber;
 
             if (res.data && res.data.results) {
+                found = res.data.results.length;
                 for (i = 0; i < res.data.results.length; i += 1) {
                     issueNumber = "" + res.data.results[i].issueNumber;
 
@@ -94,8 +96,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             //'&issueNumber=' + issue.number +
             '&noVariants=true' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4',
-            volumeData = getVolumeData(issue.series, issue.volume),
-            summary = "";
+            volumeData = getVolumeData(issue.series, issue.volume);
 
         if (!volumeData[issue.number]) {
             volumeData[issue.number] = {
@@ -113,16 +114,14 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
              $http.get(link, { cache: true }).success(makeSetDataCallback(volumeData, issue));
         }
         //$http.get(link, { cache: true }).success(makeIssueCallback(issue));
+    }
 
-
-        for (iss in volumeData) {
-            summary = summary.concat(iss + " ");
-            summary = summary.concat(volumeData[iss].urls.length);
-        }
-        return summary;
+    function getSummary() {
+        return found;
     }
 
     return {
-        getMarvelData: getMarvelData
+        getMarvelData: getMarvelData,
+        getSummary: getSummary
     }
 }]);
