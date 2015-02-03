@@ -38,37 +38,33 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         return seriesEntry[startYear];
     }
 
-    //function getIssueData(series, startYear, number) {
-    //    var yearEntry = getVolumeData(series, startYear);
-    //
-    //    if (!yearEntry[number]) {
-    //        yearEntry[number] = {
-    //            coverRoot: "",
-    //            extension: "",
-    //            urls: mapUrls([])
-    //        };
-    //    }
-    //
-    //    return yearEntry[number];
-    //}
-
-    function makeSetDataCallback(volume) {
-        var foundVolume = volume;
+    function makeSetDataCallback(volume, issue) {
+        var foundVolume = volume,
+            origIssue = issue;
 
         return function(res, status, headers, config) {
             var i,
                 offset = 0,
-                foundIssue;
+                foundIssue,
+                issueNumber;
 
             if (res.data && res.data.results) {
                 for (i = 0; i < res.data.results.length; i += 1) {
-                    if (!foundVolume[res.data.results[i].issueNumber]) {
-                        foundVolume[res.data.results[i].issueNumber] = {};
-                        foundIssue = foundVolume[res.data.results[i].issueNumber];
+                    issueNumber = "" + res.data.results[i].issueNumber;
+
+                    if (!foundVolume[issueNumber]) {
+                        foundVolume[issueNumber] = {};
+                        foundIssue = foundVolume[issueNumber];
 
                         foundIssue.coverRoot = res.data.results[i].thumbnail.path;
                         foundIssue.extension = res.data.results[i].thumbnail.extension;
                         foundIssue.urls = mapUrls(res.data.results[i].urls);
+
+                        if (issue.number === issueNumber) {
+                            origIssue.coverRoot = res.data.results[i].thumbnail.path;
+                            origIssue.extension = res.data.results[i].thumbnail.extension;
+                            origIssue.urls = mapUrls(res.data.results[i].urls);
+                        }
                     }
                 }
 
@@ -113,7 +109,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         issue.urls = volumeData[issue.number].urls;
 
         if (!volumeData[issue.number]) {
-             $http.get(link, { cache: true }).success(makeSetDataCallback(volumeData));
+             $http.get(link, { cache: true }).success(makeSetDataCallback(volumeData, issue));
         }
         //$http.get(link, { cache: true }).success(makeIssueCallback(issue));
     }
