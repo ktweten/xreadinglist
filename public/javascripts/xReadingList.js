@@ -3,8 +3,8 @@
  */
 var xReadingListApp = angular.module('xReadingList', ['infinite-scroll']);
 
-xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection',
-    function($http, NameList, Collection) {
+xReadingListApp.controller('QueryController', ['$http', '$location', '$anchorScroll', 'NameList', 'Collection',
+    function($http, $location, $anchorScroll, NameList, Collection) {
     var self = this;
     self.issues = 0;
     self.startYear = 1963;
@@ -23,6 +23,7 @@ xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection'
     self.hideResults = function() {
         self.showQuery = true;
         $location.hash("query");
+        $anchorScroll();
     };
 
     self.query = function() {
@@ -51,6 +52,7 @@ xReadingListApp.controller('QueryController', ['$http', 'NameList', 'Collection'
             self.collection.clear();
             self.collection.addIssues(data);
             $location.hash("results-list");
+            $anchorScroll();
         });
     };
 }]);

@@ -125,7 +125,7 @@
                             ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }">
                         {{issue.number}}
                     </button>
-                    <div class="issue" ng-show="detailsCtrl.showDetails">
+                    <div id="details" class="issue" ng-show="detailsCtrl.showDetails">
                         <img class="issue-cover"
                              ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
                              alt="">

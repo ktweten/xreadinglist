@@ -2,7 +2,8 @@
  * Created by Kelly on 1/21/2015.
  */
 
-angular.module('xReadingList').controller('DetailsController', ['$http', function($http) {
+angular.module('xReadingList').controller('DetailsController', ['$http', '$location', '$anchorScroll',
+    function($http, $location, $anchorScroll) {
     var self = this;
     self.issue = {};
     self.showDetails = false;
@@ -14,6 +15,8 @@ angular.module('xReadingList').controller('DetailsController', ['$http', functio
     self.getDetails = function(issue) {
 
         if (issue._id !== self.lastId) {
+            $location.hash("details");
+            $anchorScroll();
             self.showDetails = true;
             self.lastId = issue._id;
             self.coverRoot = issue.coverRoot;
