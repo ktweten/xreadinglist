@@ -61,7 +61,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 for (i = 0; i < res.data.results.length; i += 1) {
                     issue = res.data.results[i];
 
-                    for (j = 0; j < foundVolume.length; j += 1) {
+                    for (j = 0; j < vol.length; j += 1) {
                         if (vol[j].number === issue.issueNumber.toString()) {
                             vol[j].coverRoot = issue.thumbnail.path;
                             vol[j].extension = issue.thumbnail.extension;
