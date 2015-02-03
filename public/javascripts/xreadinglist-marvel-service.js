@@ -55,30 +55,27 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                 number,
                 found = false;
 
-            for (j = 0; j < foundVolume.length; j += 1) {
-                foundVolume[j].coverRoot = "";
-                if (res.data) {
-                    foundVolume[j].coverRoot = "res.data";
-                }
-                if (res.data && res.data.results) {
-                    foundVolume[j].coverRoot = "res.data && res.data.results " + res.data.results.length;
-                }
-            }
+            //for (j = 0; j < foundVolume.length; j += 1) {
+            //    foundVolume[j].coverRoot = "";
+            //    if (res.data) {
+            //        foundVolume[j].coverRoot = "res.data";
+            //    }
+            //    if (res.data && res.data.results) {
+            //        foundVolume[j].coverRoot = "res.data && res.data.results " + res.data.results.length;
+            //    }
+            //}
 
             if (res.data && res.data.results) {
 
-                for (i = 0; i < res.data.results; i += 1) {
-                    issue = res.data.results[i];
-                    found = false;
+                //for (i = 0; i < res.data.results; i += 1) {
+                    issue = res.data.results[0];
 
                     for (j = 0; j < foundVolume.length; j += 1) {
-                        //if (Number(foundVolume[j].number) === issue.issueNumber) {
-                            found = true;
-                            foundVolume[j].coverRoot = issue.thumbnail.path;
-                            foundVolume[j].extension = issue.thumbnail.extension;
-                            foundVolume[j].urls = mapUrls(issue.urls);
-                            break;
-                        //}
+                        found = true;
+                        foundVolume[j].coverRoot = issue.thumbnail.path;
+                        foundVolume[j].extension = issue.thumbnail.extension;
+                        foundVolume[j].urls = mapUrls(issue.urls);
+                        break;
                     }
                 }
             }
