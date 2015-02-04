@@ -63,6 +63,7 @@ th, td {
 .fixed {
     position: fixed;
     top: 0;
+    border: 2px solid black;
 }
 
 .fixed-title, .response, .selecting,  {

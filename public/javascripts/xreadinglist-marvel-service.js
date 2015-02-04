@@ -75,7 +75,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             }
 
             total = res.data.offset + res.data.count;
-            if (total < res.data.total && res.data.limit === res.data.count) {
+            if (total < res.data.total && res.data.limit === res.data.count && skip < 1000) {
                 getMarvelVolumeData(title, year, skip, vol);
             }
         }
@@ -84,6 +84,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
     function getMarvelVolumeData(series, startYear, offset, volume) {
         var link = 'http://gateway.marvel.com:80/v1/public/comics?title=' + series +
             '&startYear=' + startYear +
+            '&formatType=comic' +
             '&offset=' + offset +
             '&limit=' + 100 +
             '&noVariants=true' +
