@@ -25,7 +25,7 @@ angular.module('xReadingList').factory('NameList', ['$http', '$filter', function
         self.excluded = [];
         self.selecting = false;
         self.hasAllColumn = allColumn;
-        self.limit = 50;
+        self.limit = 25;
         self.displayList = [];
         self.searchText = "";
 
@@ -48,7 +48,7 @@ angular.module('xReadingList').factory('NameList', ['$http', '$filter', function
         };
 
         this.increaseLimit = function() {
-            self.limit += 50;
+            self.limit += 25;
             self.updateDisplayList();
         };
 

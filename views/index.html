@@ -15,7 +15,7 @@
 </head>
 <header>
     <h1 class="heading">X-ReadingList</h1>
-    <h2>A tool to help sort through decades of comics about the X-Men.</h2>
+    <h2>Helping to sort through decades of comics about the X-Men.</h2>
     <p>
         Data provided by
         <a href="http://www.marvel.com"> Marvel</a>
@@ -31,14 +31,14 @@
 <body ng-app="xReadingList"  ng-controller="QueryController as queryCtrl">
     <div id="query" class="wide list" ng-show="queryCtrl.showQuery">
         <form class="wide">
-            <h1 class="heading">Search for issues:</h1>
+            <h1 class="notice">Search for issues:</h1>
             <div class="wide list" ng-repeat="list in queryCtrl.lists">
                 <div class="list-contents">
                     <a type="button" class="btn btn-default btn-block btn-lg selecting" data-toggle="button"
                        ng-click="list.setSelecting()">
                         {{list.title}}
                     </a>
-                    <div class="selection-summary light-text" ng-hide="list.selecting || list.getDescription().length < 1"
+                    <div class="selection-summary light-text" ng-hide="list.selecting || list.getDescription().length < 1">
                         <p ng-repeat="line in list.getDescription()">{{line}}</p>
                     </div>
 
@@ -49,7 +49,7 @@
                                    ng-change="list.updateDisplayList()">
                             <button class="dark-text btn btn-default" ng-click="list.clearSelections()">Clear Selections</button>
                         </div>
-                        <table class="col-xs-12">
+                        <table>
                             <thead class="selection-heading dark-text">
                                 <th></th>
                                 <th ng-show="list.hasAllColumn">All Of</td>
@@ -59,7 +59,10 @@
                             <tbody infinite-scroll="list.increaseLimit()">
                                 <tr ng-repeat="name in list.displayList"
                                     ng-class-odd="'light-row'">
-                                    <td class="col-xs-9 name-entry">{{name}}</td>
+                                    <td class="name-entry"
+                                        ng-class="list.hasAllColumn ? 'col-xs-10' : 'col-xs-11'">
+                                        {{name}}
+                                    </td>
                                     <td class="col-xs-1" ng-show="list.hasAllColumn">
                                         <button type="button"
                                                 class="btn selection-button"
@@ -92,9 +95,9 @@
 
             <div id="date">
                 <div class="selection-summary">
-                    <label>From: </label>
+                    <label class="notice">From: </label>
                     <input class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.startYear">
-                    <label>To: </label>
+                    <label class="notice">To: </label>
                     <input class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.endYear">
                 </div>
             </div>
