@@ -54,7 +54,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             index;
 
         for (index = 0; index < vol.length; index += 1) {
-            map[ vol[index] ] = index;
+            map[ vol[index].number ] = index;
         }
 
         return function(res, status, headers, config) {
