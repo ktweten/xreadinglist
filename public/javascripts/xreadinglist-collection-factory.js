@@ -96,7 +96,6 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
                     issueList.push(issue);
                     issueList.sort(issueSort);
-                    //MarvelService.getMarvelVolumeData(issue.series, issue.volume, 0, issueList);
                 } else {
                     issue.coverRoot = issueList[issueIndex].coverRoot;
                     issue.extension = issueList[issueIndex].extension;
