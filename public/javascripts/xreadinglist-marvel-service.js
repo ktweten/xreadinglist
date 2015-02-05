@@ -71,7 +71,6 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
                         }
                     }
                 }
-
             }
 
             total = res.data.offset + res.data.count;
