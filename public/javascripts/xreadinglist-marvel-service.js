@@ -49,27 +49,41 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
         var title = series,
             year = startYear,
             vol = volume,
-            skip = offset + 100;
+            skip = offset + 100,
+            map = {};
+
+        for (j = 0; j < vol.length; j += 1) {
+            map[vol[j].number] = vol[j];
+        }
 
         return function(res, status, headers, config) {
             var i,
                 j,
                 issue,
-                total;
+                total,
+                entry;
 
             if (res.data && res.data.results) {
 
                 for (i = 0; i < res.data.results.length; i += 1) {
                     issue = res.data.results[i];
 
-                    for (j = 0; j < vol.length; j += 1) {
-                        if (vol[j].number === issue.issueNumber.toString()) {
-                            vol[j].coverRoot = issue.thumbnail.path;
-                            vol[j].extension = issue.thumbnail.extension;
-                            vol[j].urls = mapUrls(issue.urls);
-                            break;
-                        }
+                    entry = map[issue.issueNumber.toString()];
+
+                    if (entry) {
+                        entry.coverRoot = issue.thumbnail.path;
+                        entry.extension = issue.thumbnail.extension;
+                        entry.urls = mapUrls(issue.urls);
                     }
+
+                    //for (j = 0; j < vol.length; j += 1) {
+                    //    if (vol[j].number === issue.issueNumber.toString()) {
+                    //        vol[j].coverRoot = issue.thumbnail.path;
+                    //        vol[j].extension = issue.thumbnail.extension;
+                    //        vol[j].urls = mapUrls(issue.urls);
+                    //        break;
+                    //    }
+                    //}
                 }
             }
 
