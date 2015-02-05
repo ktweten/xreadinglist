@@ -37,6 +37,7 @@ th, td {
     color: #f5f5f5;
     width: 100px;
     height: 150px;
+    white-space: normal;
 }
 
 .covers {
@@ -63,7 +64,7 @@ th, td {
 .fixed {
     position: fixed;
     top: 0;
-    border: 2px solid black;
+    border: 5x solid black;
 }
 
 .fixed-title, .response, .selecting,  {
