@@ -101,6 +101,7 @@ angular.module('xReadingList').service('MarvelService', ['$http', function($http
             '&offset=' + offset +
             '&limit=' + 100 +
             '&noVariants=true' +
+            '&orderBy=issueNumber' +
             '&apikey=2c7b5e832ec9ddc7c4dc4e432f24fbb4';
 
         $http.get(link, { cache: true }).success(makeVolumeCallback(series, startYear, volume, offset));
