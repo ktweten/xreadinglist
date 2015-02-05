@@ -70,6 +70,7 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                 issueList,
                 series,
                 issue,
+                index,
                 fetchingSeries = [];
 
             self.debug = "";
@@ -93,21 +94,31 @@ angular.module('xReadingList').factory('Collection', [ 'MarvelService', function
                     issue.coverRoot = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
                     issue.extension = 'jpg';
                     issue.urls = [{type: 'Marvel.com', url: 'http://www.marvel.com'}];
-
-                    if (fetchingSeries.indexOf(issue.series) < 0) {
-                        fetchingSeries.push(issue.series);
-                        MarvelService.getMarvelVolumeData(issue.series, issue.volume, 0, issueList);
-                    }
-
                     issueList.push(issue);
                     issueList.sort(issueSort);
+                    //MarvelService.getMarvelVolumeData(issue.series, issue.volume, 0, issueList);
                 } else {
                     issue.coverRoot = issueList[issueIndex].coverRoot;
                     issue.extension = issueList[issueIndex].extension;
                     issue.urls = issueList[issueIndex].urls;
-
                     issueList[issueIndex] = issue;
                 }
+
+                for (index = 0; index < fetchingSeries.length; index += 1) {
+                    if (fetchingSeries[index].series === issue.series &&
+                        fetchingSeries[index].volume === issue.volume) {
+                        break;
+                    }
+                }
+
+                if (index === fetchingSeries.length) {
+                    fetchingSeries.push( {series: issue.series, volume: issue.volume, list: issueList} );
+                }
+            }
+
+            for (index = 0; index < fetchingSeries.length; index += 1) {
+                MarvelService.getMarvelVolumeData(fetchingSeries[index].series, fetchingSeries[index].volume, 0,
+                    fetchingSeries[index].list);
             }
         }
     }
