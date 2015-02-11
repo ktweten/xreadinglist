@@ -4,6 +4,8 @@
 
 angular.module('xReadingList').controller('DetailsController', ['$http', '$location', '$anchorScroll',
     function($http, $location, $anchorScroll) {
+    'use strict';
+
     var self = this;
     self.issue = {};
     self.showDetails = false;

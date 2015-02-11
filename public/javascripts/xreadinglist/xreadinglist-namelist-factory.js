@@ -15,6 +15,8 @@ function removeNameFromList(name, list) {
 }
 
 angular.module('xReadingList').factory('NameList', ['$http', '$filter', function($http, $filter) {
+    'use strict';
+
     function CreateList(name, allColumn) {
         var self = this;
 

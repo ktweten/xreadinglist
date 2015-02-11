@@ -16,6 +16,8 @@ function addToSequence(sequence, start, end) {
 }
 
 angular.module('xReadingList').filter('sequence', function() {
+    'use strict';
+
     return function(numbers) {
         var index,
             startNumber,

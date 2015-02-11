@@ -13,6 +13,8 @@ function issueSort(a, b) {
 }
 
 angular.module('xReadingList').factory('Collection', [ 'MarvelService', function(MarvelService) {
+    'use strict';
+
     function CreateCollection() {
         var self = this;
 
