@@ -1,5 +1,4 @@
 #!/bin/env node
-//  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
 var path = require('path');
@@ -11,7 +10,7 @@ var routes = require('./routes/index');
 
 
 /**
- *  Define the sample application.
+ *  Define the application.
  */
 var SampleApp = function() {
 
@@ -39,27 +38,6 @@ var SampleApp = function() {
         };
     };
 
-
-    /**
-     *  Populate the cache.
-     */
-    //self.populateCache = function() {
-    //    if (typeof self.zcache === "undefined") {
-    //        self.zcache = { 'index.html': '' };
-    //    }
-    //
-    //    //  Local cache for static content.
-    //    self.zcache['index.html'] = fs.readFileSync('./index.html');
-    //};
-
-
-    /**
-     *  Retrieve entry (content) from cache.
-     *  @param {string} key  Key identifying content to retrieve from cache.
-     */
-    //self.cache_get = function(key) { return self.zcache[key]; };
-
-
     /**
      *  terminator === the termination handler
      *  Terminate server on receipt of the specified signal.
@@ -78,17 +56,17 @@ var SampleApp = function() {
     /**
      *  Setup termination handlers (for exit and a list of signals).
      */
-    //self.setupTerminationHandlers = function(){
-    //    //  Process on exit and signals.
-    //    process.on('exit', function() { self.terminator(); });
-    //
-    //    // Removed 'SIGPIPE' from the list - bugz 852598.
-    //    ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-    //     'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-    //    ].forEach(function(element, index, array) {
-    //        process.on(element, function() { self.terminator(element); });
-    //    });
-    //};
+    self.setupTerminationHandlers = function(){
+        //  Process on exit and signals.
+        process.on('exit', function() { self.terminator(); });
+
+        // Removed 'SIGPIPE' from the list - bugz 852598.
+        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+        ].forEach(function(element, index, array) {
+            process.on(element, function() { self.terminator(element); });
+        });
+    };
 
 
     /*  ================================================================  */
@@ -96,31 +74,11 @@ var SampleApp = function() {
     /*  ================================================================  */
 
     /**
-     *  Create the routing table entries + handlers for the application.
-     */
-    //self.createRoutes = function() {
-    //    self.routes = { };
-    //
-    //    self.routes['/asciimo'] = function(req, res) {
-    //        var link = "http://i.imgur.com/kmbjB.png";
-    //        res.send("<html><body><img src='" + link + "'></body></html>");
-    //    };
-    //
-    //    self.routes['/'] = function(req, res) {
-    //        res.setHeader('Content-Type', 'text/html');
-    //        res.send(self.cache_get('index.html') );
-    //    };
-    //};
-
-
-    /**
      *  Initialize the server (express) and create the routes and register
      *  the handlers.
      */
     self.initializeServer = function() {
-        //self.createRoutes();
         self.app = express();
-
 
         // view engine setup
         self.app.set('views', path.join(__dirname, 'views'));
@@ -133,11 +91,6 @@ var SampleApp = function() {
         self.app.use(express.static(path.join(__dirname, 'public')));
 
         self.app.use('/', routes);
-        //
-        ////  Add handlers for the app (from the routes).
-        //for (var r in self.routes) {
-        //    self.app.get(r, self.routes[r]);
-        //}
 
         // catch 404 and forward to error handler
         self.app.use(function(req, res, next) {
@@ -174,12 +127,10 @@ var SampleApp = function() {
 
 
     /**
-     *  Initializes the sample application.
+     *  Initializes the application.
      */
     self.initialize = function() {
         self.setupVariables();
-        //self.populateCache();
-        //self.setupTerminationHandlers();
 
         // Create the express server and routes.
         self.initializeServer();
@@ -197,14 +148,14 @@ var SampleApp = function() {
         });
     };
 
-};   /*  Sample Application.  */
+};
 
 
 
 /**
  *  main():  Main code.
  */
-var zapp = new SampleApp();
-zapp.initialize();
-zapp.start();
+var app = new SampleApp();
+app.initialize();
+app.start();
 

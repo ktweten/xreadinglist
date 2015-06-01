@@ -1,55 +1,6 @@
-doctype html
-html
-head(lang="en")
-    meta(charset="UTF-8")
-    title(X-ComicReadingList)
-    script(src="public/javascripts/angular.js")
-    script(src="bootstrap/js/bootstrap.js")
-    script(src="public/javascripts/xReadingList.js")
-    link(rel="stylesheet", href="public/stylesheets/style.css")
+extends layout
 
-body(ng-app="xReadingList")
-    h1 I would like to read comics...
-
-    div(id="characterDiv", class="selectingDiv", ng-controller="CharacterController as characterCtrl")
-        div(ng-hide="characterCtrl.selecting" ng-click="characterCtrl.selecting = true")
-            h2 {{1 + 2}}
-        //    h2 Featuring: {{characterCtrl.includedCharacters.join() || 'Any characters'}}
-        //
-        //h2(ng-show="characterCtrl.excludedCharacters.length > 0")
-        //        Excluding: {{characterCtrl.excludedCharacters.join()}}
-        //
-        //div(ng-show="characterCtrl.selecting")
-        //    table
-        //        tr
-        //            td Name
-        //            td Include
-        //            td Exclude
-        //
-        //        tr(ng-repeat="characterName in characterCtrl.allCharacters")
-        //            td {{characterName}}
-        //            td
-        //                input(type="checkbox", name={{characterName}}+"selection",
-        //                   ng-click="characterCtrl.toggleIncluded(characterName)",
-        //                   ng-checked="characterCtrl.includedCharacters.indexOf(characterName) >= 0")
-        //
-        //            td
-        //                input(type="checkbox" name={{characterName}}+"selection",
-        //                       ng-click="characterCtrl.toggleExcluded(characterName)",
-        //                       ng-checked="characterCtrl.excludedCharacters.indexOf(characterName) >= 0")
-        //
-        //    button(ng-click="characterCtrl.selecting = false") Close
-
-    //div(id="writerDiv", class="selectingDiv", ng-controller="WriterController as writerCtrl")
-    //    h2 Written by: {{writerCtrl.includeWriters}}
-    //    h2(ng-show="excludeWriters") Not written by: {{writerCtrl.excludeWriters}}
-    //
-    //div(id="pencillerDiv", class="selectingDiv", ng-controller="PencillerController as pencillerCtrl")
-    //    h2 Pencilled by: {{pencillerCtrl.includePencillers}}
-    //    h2(ng-show="excludePencillers") Not pencilled by: {{pencillerCtrl.excludePencillers}}
-    //
-    //div(id="inkerDiv", class="selectingDiv", ng-controller="InkerController as inkerCtrl")
-    //    h2 Inked by: {{inkerCtrl.includeInkers}}
-    //    h2(ng-show="excludeInkers") Not inked by: {{inkerCtrl.excludeInkers}}
-
-    button(id="queryButton") Search
+block content
+    body(ng-app="xReadingList"  ng-controller="QueryController as queryCtrl")
+        include query.jade
+        include results.jade

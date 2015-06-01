@@ -1,0 +1,23 @@
+//
+   Created by Kelly on 6/1/2015.
+div(id="{{volume.name}}-details" class="issue" ng-show="detailsCtrl.showDetails")
+    img(class="issue-cover"
+    ng-src="{{ detailsCtrl.coverRoot + '/portrait_uncanny.' + detailsCtrl.extension }}"
+    alt="")
+    div(class="info")
+        h3 {{detailsCtrl.issue.number}}
+        p {{detailsCtrl.issue.titles.join(", ")}}
+        p {{detailsCtrl.issue.month}}, {{detailsCtrl.issue.year}}
+
+    div(class="credits")
+        p Script: {{detailsCtrl.issue.script.length === 0 ? 'Not available' : detailsCtrl.issue.script.join(", ")}}
+        p Pencils: {{detailsCtrl.issue.pencils.length === 0 ? 'Not available' : detailsCtrl.issue.pencils.join(", ")}}
+        p Inks: {{detailsCtrl.issue.inks.length === 0 ? 'Not available' : detailsCtrl.issue.inks.join(", ")}}
+        p Colours: {{detailsCtrl.issue.colours.length === 0 ? 'Not available' : detailsCtrl.issue.colours.join(", ")}}
+
+    div(class="synopsis")
+        p(ng-repeat="line in detailsCtrl.issue.synopsis") {{line === "" ? 'No synopsis available' : line}}
+        p Characters: {{detailsCtrl.issue.characters.length === 0 ? 'Not available' : detailsCtrl.issue.characters.join(", ")}}
+        span(ng-repeat="url in detailsCtrl.urls")
+            a(class="reader-link" href="{{url.url}}" target="blank") {{url.type}}
+            br

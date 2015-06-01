@@ -1,0 +1,27 @@
+//
+   Created by Kelly on 6/1/2015.
+
+div(id="results-list" ng-hide="queryCtrl.showQuery")
+    h1(class="heading") Found: {{queryCtrl.issues}}
+    div(class="comic" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'")
+        p(class="series-heading") {{comic.name}}
+        div(ng-repeat="volume in comic.volumes | orderBy:'name'")
+            div(class="result-series")
+                h3(ng-show="volume.name") {{volume.name}}
+                button(type="button" class="btn btn-default btn-lg sequence-btn" data-toggle="button"
+                ng-show="volume.issues.length > 1"
+                ng-click="volume.expand = !volume.expand") {{volume.issues | sequence}}
+
+            div(ng-show="volume.expand || volume.issues.length === 1" ng-controller="DetailsController as detailsCtrl")
+                div(class="covers")
+                    button(class="btn btn-default cover-button"
+                    ng-repeat="issue in volume.issues"
+                    ng-click="detailsCtrl.getDetails(issue, volume.name)"
+                    ng-style="{ 'background-image' : 'url(' + issue.coverRoot + '/portrait_medium.' + issue.extension + ')' }") {{issue.number}}
+
+                    div(class="selection-summary light-text" ng-hide="list.selecting || list.getDescription().length < 1")
+                        p(ng-repeat="line in list.getDescription()") {{line}}
+
+                    include details.jade
+
+    button(type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.hideResults()") New Search

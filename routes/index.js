@@ -28,12 +28,11 @@ process.on('SIGINT', function() {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.sendfile('views/index.html');
+  res.render('index');
 });
 
-router.post('/list', function(req, res) {
-  console.log(req.body);
-  ListModel.find({title: req.body.listName}, function(err, doc) {
+router.get('/list/:listName', function(req, res) {
+  ListModel.find({title: req.params.listName}, function(err, doc) {
       if (err) {
           console.log(err);
       } else {
@@ -42,9 +41,9 @@ router.post('/list', function(req, res) {
   });
 });
 
-router.post('/details', function(req, res) {
-    console.log("Id: " + req.body.id);
-    IssueModel.find( { _id: req.body.id }, function(err, doc) {
+router.get('/details/:id', function(req, res) {
+    console.log("Id: " + req.params.id);
+    IssueModel.find( { _id: req.params.id }, function(err, doc) {
         if (err) {
             console.log("Error: " + err);
         } else {
@@ -53,7 +52,7 @@ router.post('/details', function(req, res) {
     });
 });
 
-router.post('/issues', function(req, res) {
+router.post('/issues/', function(req, res) {
     var conditions = [];
 
     if (req.body.requiredCharacters.length > 0) {
@@ -100,7 +99,8 @@ router.post('/issues', function(req, res) {
     conditions.push({ year: {$gte: req.body.startYear, $lte: req.body.endYear} });
 
     if (conditions.length > 0) {
-        IssueModel.find( { $and: conditions }, { series: 1, volume: 1, number: 1, _id: 1, coverRoot: 1, extension: 1 }, function(err, doc) {
+        IssueModel.find( { $and: conditions }, { series: 1, volume: 1, number: 1, _id: 1, coverRoot: 1, extension: 1 },
+            function(err, doc) {
             if (err) {
                 console.log(err);
             } else {
