@@ -1,11 +1,11 @@
 a {
-    color: lightblue;
+    color: #385c58;
 }
 
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     max-width: 100%;
-    background-color: slategray;
+    background-color: #385c58;
 }
 
 .row {
@@ -13,8 +13,8 @@ body {
 }
 
 header {
-    background-color: #337ab7;
-    color: #f5f5f5;
+    background-color: #01a686;
+    color: white;
     font-size: 18px;
     line-height: 1.33;
     padding: 10px 16px;
@@ -69,7 +69,7 @@ header {
 }
 
 .found-heading {
-    background-color: slategray;
+    background-color: #6F8693;
 }
 
 .heading, .notice {
@@ -103,7 +103,7 @@ header {
 }
 
 .list {
-    background-color: slategray;
+    background-color: #b8d7ab;
 }
 
 .notice {
@@ -117,7 +117,7 @@ header {
 }
 
 .response {
-    background-color: slategray;
+    background-color: #6F8693;
 }
 
 .result-series {
@@ -126,12 +126,12 @@ header {
 
 .search {
     padding: 0.5em;
-    background-color: #23527c;
+    background-color: #01a686;
     color: #f5f5f5;
 }
 
 .selecting {
-    background-color: slategray;
+    background-color: #6F8693;
 }
 
 .selection-button {
@@ -146,7 +146,7 @@ header {
 
 .selection-summary {
     padding: 1%;
-    background-color: #5e5e5e;
+    background-color: #383838;
 }
 
 .sequence-btn {

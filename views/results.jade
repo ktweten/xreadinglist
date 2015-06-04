@@ -2,7 +2,7 @@
    Created by Kelly on 6/1/2015.
 
 div(id="results-list" ng-hide="queryCtrl.showQuery")
-    h1(class="heading") Found: {{queryCtrl.issues}}
+    h1(class="heading light-text") Found: {{queryCtrl.issues}}
     div(class="comic" ng-repeat="comic in queryCtrl.collection.comics | orderBy:'name'")
         p(class="series-heading") {{comic.name}}
         div(ng-repeat="volume in comic.volumes | orderBy:'name'")
@@ -24,4 +24,4 @@ div(id="results-list" ng-hide="queryCtrl.showQuery")
 
                     include details.jade
 
-    button(type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.hideResults()") New Search
+    button(type="button" class="btn btn-success btn-block btn-lg" ng-click="queryCtrl.hideResults()") New Search

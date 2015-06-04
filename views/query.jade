@@ -18,7 +18,7 @@ form(id="query" ng-show="queryCtrl.showQuery")
                     p(ng-repeat="line in list.getDescription()") {{line}}
 
                 div(ng-show="list.selecting")
-                    div(class="selection-heading light-text")
+                    div(class="row dark-row light-text")
                         div(ng-class="list.hasAllColumn ? 'col-xs-6' : 'col-xs-8'")
                         div(class="col-xs-2" ng-show="list.hasAllColumn") All Of
                         div(class="col-xs-2") Any Of
@@ -51,4 +51,4 @@ form(id="query" ng-show="queryCtrl.showQuery")
             label(class="notice") To:
             input(class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.endYear")
 
-    button(type="button" class="btn btn-primary btn-block btn-lg" ng-click="queryCtrl.query()") Search
+    button(type="button" class="btn btn-success btn-block btn-lg" ng-click="queryCtrl.query()") Search
