@@ -46,9 +46,9 @@ form(id="query" ng-show="queryCtrl.showQuery")
                                 ng-click="list.toggleList('Exclude', name)")
 
         div(class="row selection-summary" id="date ")
-            label(class="notice") From:
+            label(class="notice light-text") From:
             input(class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.startYear")
-            label(class="notice") To:
+            label(class="notice light-text") To:
             input(class="darkText" type="number" min="1963" max="2015" ng-model="queryCtrl.endYear")
 
     button(type="button" class="btn btn-success btn-block btn-lg" ng-click="queryCtrl.query()") Search
